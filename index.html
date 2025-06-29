@@ -750,7 +750,16 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 <<!-- Toast Messages will be inserted here automatically -->
-<div id="toast-container"></div>
+<!-- Toast Messages Container -->
+<div id="successToast" class="toast-message success">
+  <i class="bi bi-check-circle-fill"></i>
+  <span>تم إرسال رسالتك بنجاح!</span>
+</div>
+
+<div id="errorToast" class="toast-message error" style="display:none;">
+  <i class="bi bi-exclamation-triangle-fill"></i>
+  <span>حدث خطأ أثناء الإرسال!</span>
+</div>
 
 </body>
 
