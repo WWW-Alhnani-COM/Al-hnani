@@ -19,7 +19,7 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #000000;   /* أسود */
+/* --background-color: #000000; */  /* أسود */
   --default-color: #f5f5f5;      /* نص رمادي فاتح */
   --heading-color: #ffffff;      /* العناوين باللون الأبيض */
   --accent-color: #ffbb27;       /* لون التمييز كما هو */
