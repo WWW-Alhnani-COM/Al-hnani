@@ -288,4 +288,71 @@
     initContactForm();
   });
 
+
+/**
+ * كشف إعدادات النظام وتطبيق الثيم المناسب
+ */
+function detectColorScheme() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    return;
+  }
+
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+  if (prefersDark) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else if (prefersLight) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+}
+
+/**
+ * زر تبديل الثيم
+ */
+function addThemeToggle() {
+  const themeToggle = document.createElement('button');
+  themeToggle.id = 'theme-toggle';
+  themeToggle.className = 'theme-toggle-btn';
+  themeToggle.setAttribute('aria-label', 'Toggle theme');
+  themeToggle.setAttribute('title', 'Toggle theme');
+
+  const header = document.querySelector('#header .container-fluid');
+  if (header) header.appendChild(themeToggle);
+
+  const updateIcon = (theme) => {
+    themeToggle.innerHTML = theme === 'light' 
+      ? '<i class="bi bi-moon-fill"></i>' 
+      : '<i class="bi bi-sun-fill"></i>';
+  };
+
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const newTheme = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon(newTheme);
+  });
+
+  updateIcon(document.documentElement.getAttribute('data-theme'));
+}
+
+// شغل هذه الوظائف عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function () {
+  detectColorScheme();
+  addThemeToggle();
+});
+
+// استمع لتغير نظام الجهاز
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  if (!localStorage.getItem('theme')) {
+    detectColorScheme();
+  }
+});
+
+
 })();
