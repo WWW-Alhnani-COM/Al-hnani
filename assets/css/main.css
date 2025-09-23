@@ -17,24 +17,24 @@
   --nav-font: "Quicksand",  sans-serif;
 }
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+/* Global Colors - Light Theme */
 :root { 
-  --background-color: #0a192f;   /* أزرق بحري غامق */
-  --default-color: #ccd6f6;      /* أزرق فاتح */
-  --heading-color: #e6f1ff;      /* أزرق مائل للأبيض */
-  --accent-color: #64ffda;       /* فيروزي */
-  --surface-color: #112240;      /* أزرملي متوسط */
-  --contrast-color: #0a192f;     /* أزرق غامق */
+  --background-color: #ffffff;   /* أبيض نقي */
+  --default-color: #444444;      /* رمادي غامق للنصوص */
+  --heading-color: #222222;      /* أسود فاتح للعناوين */
+  --accent-color: #2563eb;       /* أزرق احترافي */
+  --surface-color: #f8fafc;      /* رمادي فاتح جداً للخلفيات */
+  --contrast-color: #ffffff;     /* أبيض للنصوص على الأزرق */
 }
 
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+/* ألوان قائمة التنقل للوضع النهاري */
 :root {
-  --nav-color: #ffffff;  /* The default color of the main navmenu links */
-  --nav-hover-color: #ffbb27; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #ffbb27; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #444444;          /* رمادي غامق */
+  --nav-hover-color: #2563eb;    /* أزرق عند التمرير */
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #444444;
+  --nav-dropdown-hover-color: #2563eb;
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
