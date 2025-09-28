@@ -12,29 +12,29 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto", system-ui, 
+  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Domine",  sans-serif;
   --nav-font: "Quicksand",  sans-serif;
 }
 
-/* Global Colors - Light Theme */
+/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #ffffff;   /* أبيض نقي */
-  --default-color: #444444;      /* رمادي غامق للنصوص */
-  --heading-color: #222222;      /* أسود فاتح للعناوين */
-  --accent-color: #2563eb;       /* أزرق احترافي */
-  --surface-color: #f8fafc;      /* رمادي فاتح جداً للخلفيات */
-  --contrast-color: #ffffff;     /* أبيض للنصوص على الأزرق */
+  --background-color: #000000;   /* أسود */
+  --default-color: #f5f5f5;      /* نص رمادي فاتح */
+  --heading-color: #ffffff;      /* العناوين باللون الأبيض */
+  --accent-color: #ffbb27;       /* لون التمييز كما هو */
+  --surface-color: #181818;      /* رمادي غامق للصناديق */
+  --contrast-color: #ffffff;     /* لون النصوص المتباينة */
 }
 
-/* ألوان قائمة التنقل للوضع النهاري */
+/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #444444;          /* رمادي غامق */
-  --nav-hover-color: #2563eb;    /* أزرق عند التمرير */
-  --nav-mobile-background-color: #ffffff;
-  --nav-dropdown-background-color: #ffffff;
-  --nav-dropdown-color: #444444;
-  --nav-dropdown-hover-color: #2563eb;
+  --nav-color: #ffffff;  /* The default color of the main navmenu links */
+  --nav-hover-color: #ffbb27; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #ffbb27; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -719,11 +719,7 @@ section,
 
 .hero:before {
   content: "";
-  background: linear-gradient(to top, 
-    var(--background-color) 0%, 
-    transparent 30%, 
-    transparent 70%, 
-    var(--background-color) 100%);
+  background: color-mix(in srgb, var(--background-color), transparent 30%);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -740,7 +736,7 @@ section,
 }
 
 .hero .container {
-position: relative;
+  position: relative;
   z-index: 3;
 }
 
@@ -1907,56 +1903,4 @@ position: relative;
 
 .toast-message i {
   font-size: 20px;
-}
-/* دعم الوضع النهاري (light theme) */
-:root[data-theme="light"] {
-  --background-color: #ffffff;
-  --default-color: #444444;
-  --heading-color: #222222;
-  --accent-color: #ffbb27;
-  --surface-color: #f5f5f5;
-  --contrast-color: #000000;
-
-  --nav-color: #444444;
-  --nav-hover-color: #ffbb27;
-  --nav-mobile-background-color: #ffffff;
-  --nav-dropdown-background-color: #ffffff;
-  --nav-dropdown-color: #444444;
-  --nav-dropdown-hover-color: #ffbb27;
-}
-
-/* انتقال سلس عند تغيير الثيم */
-body {
-  transition: background-color 0.5s ease, color 0.3s ease;
-}
-
-/* زر تغيير الثيم */
-.theme-toggle-btn {
-  background: transparent;
-  border: none;
-  color: var(--default-color);
-  font-size: 20px;
-  cursor: pointer;
-  padding: 8px;
-  margin-left: 15px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-}
-
-.theme-toggle-btn:hover {
-  background: rgba(255, 187, 39, 0.1);
-  color: var(--accent-color);
-}
-
-/* دعم للشاشات الصغيرة */
-@media (max-width: 1199px) {
-  .theme-toggle-btn {
-    margin-left: 0;
-    margin-right: 10px;
   }
-}
