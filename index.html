@@ -786,6 +786,70 @@
   <i class="bi bi-exclamation-triangle-fill"></i>
   <span>حدث خطأ أثناء الإرسال!</span>
 </div>
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+    }
+  }
+</script>
+
+<script type="module">
+  import * as THREE from 'three';
+
+  const section = document.querySelector('#hero');
+  const canvas = document.createElement('canvas');
+  canvas.id = 'hero-canvas';
+  section.appendChild(canvas);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.position.setZ(1);
+
+  // إنشاء النجوم (Particles)
+  const starsGeometry = new THREE.BufferGeometry();
+  const starsCount = 5000;
+  const posArray = new Float32Array(starsCount * 3);
+
+  for(let i = 0; i < starsCount * 3; i++) {
+    posArray[i] = (Math.random() - 0.5) * 5;
+  }
+
+  starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+  const starsMaterial = new THREE.PointsMaterial({ size: 0.005, color: '#ffffff' });
+  const starsMesh = new THREE.Points(starsGeometry, starsMaterial);
+  scene.add(starsMesh);
+
+  // تحريك النجوم مع الماوس
+  let mouseX = 0;
+  let mouseY = 0;
+  document.addEventListener('mousemove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+    starsMesh.rotation.y += 0.001;
+    if (mouseX > 0) {
+      starsMesh.rotation.x += (mouseY * 0.00005);
+      starsMesh.rotation.y += (mouseX * 0.00005);
+    }
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  // تحديث الحجم عند تغيير حجم النافذة
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
 
 </body>
 
