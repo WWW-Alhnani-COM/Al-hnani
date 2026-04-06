@@ -1904,3 +1904,30 @@ section,
 .toast-message i {
   font-size: 20px;
   }
+
+
+
+#hero {
+  position: relative;
+  overflow: hidden;
+}
+
+#hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1; /* خلف النصوص */
+  pointer-events: none; /* لكي لا يمنع الضغط على الأزرار */
+}
+
+#hero .container {
+  position: relative;
+  z-index: 2; /* فوق الخلفية الـ 3D */
+}
+
+/* اختيارياً: يمكنك إخفاء الصورة الثابتة الأصلية لجعل المشهد أوضح */
+#hero img {
+  opacity: 0.3; /* تقليل شفافية الصورة الأصلية لدمجها مع النجوم */
+}
