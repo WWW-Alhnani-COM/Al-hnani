@@ -52,45 +52,41 @@
   ======================================================== -->
   <meta name="google-site-verification" content="rf_J7WkCo6wwXKz0jnWzxWg3jJtW5H58N2x6X2YgiYE" />
 
-  <style>
-  /* حاوية النماذج الأربعة */
+<style>
   .models-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: -1; /* خلف المحتوى */
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* تقسيم الشاشة لـ 4 مناطق */
-    grid-template-rows: 1fr 1fr;
-    pointer-events: none; /* للسماح بالضغط على الروابط خلفها */
-    opacity: 0.5; /* شفافية لعدم تشتيت النظر */
+    z-index: -1;
+    pointer-events: none;
   }
 
   .model-item {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2); /* حجم كبير في البداية */
+    width: 80%;
+    height: 80%;
+    opacity: 0; /* مخفي */
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: none; /* سنعتمد على GSAP للحركة */
   }
 
   .model-item iframe {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     border: none;
   }
 
-  /* جعل أقسام الموقع شفافة لرؤية الخلفية المتحركة */
+  /* جعل الأقسام لها طول كافٍ لتشعر بالحركة */
   section {
+    min-height: 100vh;
     background: transparent !important;
-  }
-  
-  /* تأكد أن محتوى الموقع يمكن التفاعل معه */
-  main.main {
-    position: relative;
-    z-index: 1;
   }
 </style>
 
@@ -915,41 +911,50 @@
 </script>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // 1. حركة تتبع الماوس (Parallax Effect)
-  window.addEventListener('mousemove', (e) => {
-    const { clientX, clientY } = e;
-    const xPos = (clientX / window.innerWidth - 0.5) * 30;
-    const yPos = (clientY / window.innerHeight - 0.5) * 30;
+  // مصفوفة الأقسام والنماذج المرتبطة بها
+  const steps = [
+    { section: "#hero", model: "#model-flutter" },
+    { section: "#about", model: "#model-vue" },
+    { section: "#resume", model: "#model-ts" },
+    { section: "#portfolio", model: "#model-github" }
+  ];
 
-    gsap.to(".model-item", {
-      x: xPos,
-      y: yPos,
-      duration: 1,
-      stagger: 0.1, // تأخير بسيط بين كل شعار ليعطي عمق
-      ease: "power2.out"
+  steps.forEach((step, i) => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: step.section,
+        start: "top center", // يبدأ التأثير عندما يقترب القسم من المنتصف
+        end: "bottom center",
+        scrub: 1, // حركة ناعمة مع السكرول
+      }
     });
+
+    // دخول النموذج: يظهر ويكبر
+    tl.to(step.model, {
+      opacity: 0.6,
+      scale: 1,
+      duration: 1
+    })
+    // خروج النموذج: يصغر ويختفي للأعلى "انسحاب"
+    .to(step.model, {
+      opacity: 0,
+      scale: 0.5,
+      y: -100,
+      duration: 1
+    }, "+=0.5"); // انتظار بسيط قبل الاختفاء
   });
 
-  // 2. التفاعل مع السكرول (تغيير الشفافية أو الحجم عند النزول)
-  gsap.to(".model-item", {
-    scrollTrigger: {
-      trigger: "body",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: true
-    },
-    scale: 0.8,
-    opacity: 0.2,
-    stagger: 0.2
+  // حركة الماوس البسيطة (Parallax) مضافة لكل النماذج النشطة
+  window.addEventListener('mousemove', (e) => {
+    const xPos = (e.clientX / window.innerWidth - 0.5) * 20;
+    const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
+    gsap.to(".model-item", { x: xPos, y: yPos, duration: 1 });
   });
 </script>
-
 
 </body>
 
