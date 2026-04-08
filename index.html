@@ -939,14 +939,14 @@
         scrub: 1.5,
       }
     })
-    .to(step.model, { opacity: 0.7, scale: 0.8, duration: 1 }) // scale: 0.8 للمساعدة في التصغير
-    .to(step.model, { opacity: 0, scale: 0.4, y: -150, duration: 1 }, "+=0.5");
+    .to(step.model, { opacity: 0.8, scale: 0.8, duration: 1 }) 
+    .to(step.model, { opacity: 0, scale: 0.3, y: -200, duration: 1 }, "+=0.5");
   });
 
-  // دالة موحدة للتعامل مع الماوس واللمس (تفاعل يمين/يسار)
+  // --- التعديل الجديد للحركة الشاملة في جميع الاتجاهات ---
   function handleInteraction(e) {
     let x, y;
-    if (e.type === 'touchmove') {
+    if (e.type === 'touchmove' || e.type === 'touchstart') {
       x = e.touches[0].clientX;
       y = e.touches[0].clientY;
     } else {
@@ -954,23 +954,44 @@
       y = e.clientY;
     }
 
-    // حساب نسبة الانحراف عن المركز
-    const xMove = (x / window.innerWidth - 0.5) * 60; // زيادة الرقم تزيد قوة الحركة يميناً ويساراً
-    const yMove = (y / window.innerHeight - 0.5) * 60;
+    // حساب النسب المئوية لموقع الماوس/الإصبع بالنسبة للشاشة
+    const xPct = (x / window.innerWidth - 0.5); // من -0.5 إلى 0.5
+    const yPct = (y / window.innerHeight - 0.5);
 
     gsap.to(".model-item", {
-      x: xMove,
-      y: yMove,
-      rotationY: xMove * 0.8, // تدوير النموذج عند الحركة يميناً ويساراً
-      rotationX: -yMove * 0.5,
-      duration: 1.2,
-      ease: "power2.out"
+      // 1. حركة إزاحة (Translation)
+      x: xPct * 100, 
+      y: yPct * 100, 
+      z: Math.abs(xPct) * 50, // يتحرك للأمام قليلاً عند الأطراف
+
+      // 2. حركة دوران تمايلية (Rotation) في جميع الاتجاهات
+      rotationY: xPct * 80,  // يميل يميناً ويساراً بقوة
+      rotationX: -yPct * 80, // يميل للأعلى والأسفل بقوة
+      rotationZ: xPct * yPct * 40, // التفاف جانبي بسيط عند الزوايا لإضافة واقعية
+
+      duration: 1.5,
+      ease: "power2.out",
+      overwrite: "auto"
     });
   }
 
-  // تفعيل المستمعات للكمبيوتر والموبايل
+  // مستمعات الأحداث لضمان الاستجابة السريعة
   window.addEventListener('mousemove', handleInteraction);
-  window.addEventListener('touchmove', handleInteraction);
+  window.addEventListener('touchmove', handleInteraction, { passive: false });
+
+  // إضافة تأثير العودة للمركز عند ترك الماوس أو التوقف عن اللمس
+  function resetPosition() {
+    gsap.to(".model-item", {
+      x: 0, y: 0, z: 0,
+      rotationX: 0, rotationY: 0, rotationZ: 0,
+      duration: 2,
+      ease: "elastic.out(1, 0.5)"
+    });
+  }
+
+  window.addEventListener('mouseleave', resetPosition);
+  window.addEventListener('touchend', resetPosition);
+
 </script>
 
 
