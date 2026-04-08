@@ -1944,3 +1944,27 @@ section,
 body {
     background-color: #000; /* الخلفية الأساسية */
 }
+
+#logo-bg-container {
+    position: fixed !important; /* يضمن بقاءه ثابتاً في الشاشة */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    background: #000;
+}
+
+/* لجعل المحتوى يمر فوق الشعار بسلاسة */
+section {
+    position: relative;
+    background: transparent !important;
+}
+
+/* طبقة شفافة لتمكين الماوس من الوصول للشعار */
+.main {
+    pointer-events: none; 
+}
+section .container, header, footer, a, button {
+    pointer-events: auto; /* إعادة تفعيل الماوس للأزرار والنصوص فقط */
+}
