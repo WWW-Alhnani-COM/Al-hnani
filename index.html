@@ -51,6 +51,49 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
   <meta name="google-site-verification" content="rf_J7WkCo6wwXKz0jnWzxWg3jJtW5H58N2x6X2YgiYE" />
+
+  <style>
+  /* حاوية النماذج الأربعة */
+  .models-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* خلف المحتوى */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* تقسيم الشاشة لـ 4 مناطق */
+    grid-template-rows: 1fr 1fr;
+    pointer-events: none; /* للسماح بالضغط على الروابط خلفها */
+    opacity: 0.5; /* شفافية لعدم تشتيت النظر */
+  }
+
+  .model-item {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .model-item iframe {
+    width: 80%;
+    height: 80%;
+    border: none;
+  }
+
+  /* جعل أقسام الموقع شفافة لرؤية الخلفية المتحركة */
+  section {
+    background: transparent !important;
+  }
+  
+  /* تأكد أن محتوى الموقع يمكن التفاعل معه */
+  main.main {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
 </head>
 
 <body class="index-page">
