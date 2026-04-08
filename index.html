@@ -65,18 +65,23 @@
     pointer-events: none;
   }
 
+
    .model-item {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1); 
-    width: 60%; /* تصغير العرض */
-    height: 60%; /* تصغير الطول */
+    transform: translate(-50%, -50%) scale(0.6); /* جعل الحجم الافتراضي أصغر */
+    width: 50%; /* تقليل العرض قليلاً */
+    height: 50%; 
     opacity: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    pointer-events: auto; /* السماح بالتفاعل مع النموذج */
+    pointer-events: auto;
+    /* إضافة المنظور لزيادة واقعية الدوران 3D */
+    perspective: 1000px; 
+  }
+
   }
 
 
