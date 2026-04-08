@@ -861,9 +861,10 @@
 </script>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+
 <script>
     const iframe = document.getElementById('api-frame');
     const modelUid = 'e0a4df7486d14afe80f47ca21a918d3c'; 
@@ -875,36 +876,47 @@
             api.addEventListener('viewerready', function() {
                 gsap.registerPlugin(ScrollTrigger);
 
-                let cameraPos = { x: 0, y: -15, z: 0 }; 
+                // 1. إعدادات الزوايا (Top & Scroll Down)
+                let cameraPos = { x: 0, y: -15, z: 0.5 }; // البداية (Top)
 
-                // دوران الشعار مع التمرير في كامل الموقع
+                // 2. التفاعل مع التمرير (Scroll-Driven Animation)
                 gsap.to(cameraPos, {
-                    x: 15, y: 15, z: 10,
+                    x: 12, // زاوية مائلة عند النزول
+                    y: -10,
+                    z: 5,
                     scrollTrigger: {
-                        trigger: "body", // التفاعل يبدأ من بداية الصفحة
+                        trigger: "body",
                         start: "top top",
                         end: "bottom bottom",
-                        scrub: 2, // حركة ناعمة جداً
+                        scrub: 1.5, // العودة للأعلى بسلاسة
                         onUpdate: () => {
                             api.setCameraLookAt([cameraPos.x, cameraPos.y, cameraPos.z], [0, 0, 0], 0);
                         }
                     }
                 });
 
-                // تفاعل بسيط مع حركة الماوس ليعطي عمق (Depth)
+                // 3. التفاعل عند الضغط (On Click) - زووم سريع
+                api.addEventListener('click', function() {
+                    api.setCameraLookAt([0, -8, 1], [0, 0, 0], 1); 
+                });
+
+                // 4. تتبع المؤشر (Mouse Interaction / Orbit Control)
+                // جعل الموديل يستجيب لحركة الماوس بشكل طفيف ليعطي حياة للشعار
                 window.addEventListener('mousemove', (e) => {
-                    const x = (e.clientX / window.innerWidth - 0.5) * 3;
-                    const y = (e.clientY / window.innerHeight - 0.5) * 3;
-                    api.setCameraLookAt([cameraPos.x + x, cameraPos.y, cameraPos.z + y], [0, 0, 0], 0.1);
+                    const mouseX = (e.clientX / window.innerWidth - 0.5) * 4;
+                    const mouseY = (e.clientY / window.innerHeight - 0.5) * 4;
+                    api.setCameraLookAt([cameraPos.x + mouseX, cameraPos.y, cameraPos.z + mouseY], [0, 0, 0], 0.1);
                 });
             });
         },
         transparent: 1,
-        ui_controls: 0,
+        ui_controls: 0, // إخفاء الأزرار ليبقى التصميم Minimalist
         ui_infos: 0,
-        autostart: 1
+        autostart: 1,
+        orbit_constraint_pan: 1 // تفعيل الـ Orbit بشكل محكوم
     });
 </script>
+
 
 
 </body>
