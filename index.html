@@ -65,19 +65,20 @@
     pointer-events: none;
   }
 
-  .model-item {
+   .model-item {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.2); /* حجم كبير في البداية */
-    width: 80%;
-    height: 80%;
-    opacity: 0; /* مخفي */
+    transform: translate(-50%, -50%) scale(1); 
+    width: 60%; /* تصغير العرض */
+    height: 60%; /* تصغير الطول */
+    opacity: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: none; /* سنعتمد على GSAP للحركة */
+    pointer-events: auto; /* السماح بالتفاعل مع النموذج */
   }
+
 
   .model-item iframe {
     width: 100%;
@@ -917,7 +918,6 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // مصفوفة الأقسام والنماذج المرتبطة بها
   const steps = [
     { section: "#hero", model: "#model-flutter" },
     { section: "#about", model: "#model-vue" },
@@ -925,38 +925,49 @@
     { section: "#portfolio", model: "#model-github" }
   ];
 
-  steps.forEach((step, i) => {
-    const tl = gsap.timeline({
+  steps.forEach((step) => {
+    gsap.timeline({
       scrollTrigger: {
         trigger: step.section,
-        start: "top center", // يبدأ التأثير عندما يقترب القسم من المنتصف
+        start: "top center",
         end: "bottom center",
-        scrub: 1, // حركة ناعمة مع السكرول
+        scrub: 1.5,
       }
-    });
-
-    // دخول النموذج: يظهر ويكبر
-    tl.to(step.model, {
-      opacity: 0.6,
-      scale: 1,
-      duration: 1
     })
-    // خروج النموذج: يصغر ويختفي للأعلى "انسحاب"
-    .to(step.model, {
-      opacity: 0,
-      scale: 0.5,
-      y: -100,
-      duration: 1
-    }, "+=0.5"); // انتظار بسيط قبل الاختفاء
+    .to(step.model, { opacity: 0.7, scale: 0.8, duration: 1 }) // scale: 0.8 للمساعدة في التصغير
+    .to(step.model, { opacity: 0, scale: 0.4, y: -150, duration: 1 }, "+=0.5");
   });
 
-  // حركة الماوس البسيطة (Parallax) مضافة لكل النماذج النشطة
-  window.addEventListener('mousemove', (e) => {
-    const xPos = (e.clientX / window.innerWidth - 0.5) * 20;
-    const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
-    gsap.to(".model-item", { x: xPos, y: yPos, duration: 1 });
-  });
+  // دالة موحدة للتعامل مع الماوس واللمس (تفاعل يمين/يسار)
+  function handleInteraction(e) {
+    let x, y;
+    if (e.type === 'touchmove') {
+      x = e.touches[0].clientX;
+      y = e.touches[0].clientY;
+    } else {
+      x = e.clientX;
+      y = e.clientY;
+    }
+
+    // حساب نسبة الانحراف عن المركز
+    const xMove = (x / window.innerWidth - 0.5) * 60; // زيادة الرقم تزيد قوة الحركة يميناً ويساراً
+    const yMove = (y / window.innerHeight - 0.5) * 60;
+
+    gsap.to(".model-item", {
+      x: xMove,
+      y: yMove,
+      rotationY: xMove * 0.8, // تدوير النموذج عند الحركة يميناً ويساراً
+      rotationX: -yMove * 0.5,
+      duration: 1.2,
+      ease: "power2.out"
+    });
+  }
+
+  // تفعيل المستمعات للكمبيوتر والموبايل
+  window.addEventListener('mousemove', handleInteraction);
+  window.addEventListener('touchmove', handleInteraction);
 </script>
+
 
 </body>
 
