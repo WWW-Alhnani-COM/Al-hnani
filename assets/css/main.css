@@ -1931,3 +1931,16 @@ section,
 #hero img {
   opacity: 0.3; /* تقليل شفافية الصورة الأصلية لدمجها مع النجوم */
 }
+
+
+
+
+/* السماح للشعار بالظهور خلف الأقسام */
+#hero, #testimonials, .footer, .section {
+    background-color: rgba(0, 0, 0, 0.4) !important; /* شفافية 40% لتمرير صورة الشعار */
+    backdrop-filter: blur(3px); /* يعطي تأثير زجاجي فخم جداً */
+}
+
+body {
+    background-color: #000; /* الخلفية الأساسية */
+}
