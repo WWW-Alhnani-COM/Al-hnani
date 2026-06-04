@@ -170,6 +170,164 @@
     .hero section {
       position: relative;
     }
+        /* =========================================
+       قسم LinkedIn في منتصف الشاشة (Fullscreen Center)
+    ========================================= */
+    .linkedin-cta-fullscreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(135deg, rgba(0, 119, 181, 0.1) 0%, rgba(127, 0, 255, 0.1) 100%);
+      margin: 0;
+      padding: 80px 20px;
+      backdrop-filter: blur(10px);
+      border-radius: 0;
+      overflow: hidden;
+    }
+    
+    /* تأثير خلفية متحركة للقسم */
+    .linkedin-cta-fullscreen::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(127, 0, 255, 0.05) 50%, transparent 70%);
+      animation: rotateBackground 20s linear infinite;
+      z-index: 0;
+    }
+    
+    @keyframes rotateBackground {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    .linkedin-cta-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      padding: 60px 40px;
+      background: rgba(10, 10, 20, 0.7);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 242, 254, 0.2);
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .linkedin-cta-icon {
+      font-size: 5rem;
+      color: #0077b5;
+      margin-bottom: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+    
+    .linkedin-cta-content h3 {
+      color: #fff;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+    }
+    
+    .linkedin-cta-content p {
+      color: #ddd;
+      font-size: 1.2rem;
+      margin-bottom: 35px;
+      line-height: 1.8;
+    }
+    
+    .btn-linkedin {
+      background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
+      color: white;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 20px rgba(0, 119, 181, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-linkedin:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 119, 181, 0.6);
+      background: linear-gradient(135deg, #0088c8 0%, #00b0f0 100%);
+      color: white;
+      gap: 15px;
+    }
+    
+    .btn-linkedin i {
+      transition: transform 0.3s ease;
+    }
+    
+    .btn-linkedin:hover i:first-child {
+      transform: rotate(0deg) scale(1.1);
+    }
+    
+    .btn-linkedin:hover i:last-child {
+      transform: translateX(5px);
+    }
+    
+    /* للشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .linkedin-cta-content {
+        padding: 40px 20px;
+        margin: 0 15px;
+      }
+      
+      .linkedin-cta-content h3 {
+        font-size: 1.8rem;
+      }
+      
+      .linkedin-cta-content p {
+        font-size: 1rem;
+      }
+      
+      .btn-linkedin {
+        padding: 12px 30px;
+        font-size: 0.95rem;
+      }
+      
+      .linkedin-cta-icon {
+        font-size: 3.5rem;
+      }
+    }
   </style>
 </head>
 
@@ -472,12 +630,21 @@
     <!-- ========================================= -->
     <!-- القسم الجديد: دعوة لزيارة LinkedIn -->
     <!-- ========================================= -->
-    <div class="container linkedin-cta-section" data-aos="fade-up">
-      <h3>🌟 لا تروي باقي مشاريعي 🌟</h3>
-      <p>لديّ المزيد من المشاريع الاحترافية والإنجازات التي أنجزتها. ادعوك لزيارة ملفي الشخصي على LinkedIn لمشاهدة مجموعة كاملة من أعمالي وخبراتي.</p>
-      <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank" class="btn-linkedin">
-        <i class="bi bi-linkedin"></i> تصفح مشاريعي على LinkedIn
-      </a>
+    <!-- ========================================= -->
+    <!-- القسم الجديد: دعوة لزيارة LinkedIn (في منتصف الشاشة) -->
+    <!-- ========================================= -->
+    <div class="linkedin-cta-fullscreen" data-aos="fade-up">
+      <div class="linkedin-cta-content">
+        <div class="linkedin-cta-icon">
+          <i class="bi bi-linkedin"></i>
+        </div>
+        <h3> المزيد من المشاريع</h3>
+        <p>لديّ المزيد من المشاريع الاحترافية والإنجازات التي أنجزتها.<br>ادعوك لزيارة ملفي الشخصي على LinkedIn لمشاهدة مجموعة كاملة من أعمالي وخبراتي.</p>
+        <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank" class="btn-linkedin">
+          <i class="bi bi-linkedin"></i> تصفح مشاريعي على LinkedIn
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
     </div>
 
     <!-- Contact Section -->
