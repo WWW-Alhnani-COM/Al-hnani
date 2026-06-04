@@ -1689,13 +1689,16 @@ section,
   opacity: 0.6;
 }
 /*--------------------------------------------------------------
-# Navigation Menu - Mobile (قائمة جانبية)
+# Navigation Menu - Mobile (قائمة جانبية) - نسخة مصححة
 --------------------------------------------------------------*/
 @media (max-width: 1199px) {
   
   /* إخفاء أيقونات السوشل في الهيدر العلوي */
-  .header .header-social-links {
+  .header .header-social-links,
+  .header-social-links {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
   
   /* زر الهامبرجر */
@@ -1707,6 +1710,7 @@ section,
     transition: 0.3s;
     z-index: 9999;
     position: relative;
+    display: inline-flex !important;
   }
 
   /* تجهيز القائمة كشريط جانبي */
@@ -1718,7 +1722,6 @@ section,
     height: 100vh;
     background: rgba(10, 10, 20, 0.95);
     backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
     display: flex;
     flex-direction: column;
     padding: 80px 20px 30px 20px;
@@ -1760,9 +1763,9 @@ section,
     padding-right: 25px;
   }
 
-  /* أيقونات التواصل داخل القائمة */
+  /* أيقونات التواصل داخل القائمة - إظهارها بالقوة */
   .mobile-social-links {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     gap: 15px;
     padding: 20px 0;
@@ -1814,7 +1817,6 @@ section,
     z-index: 10000;
   }
 }
-
 /*--------------------------------------------------------------
 # Custom Button Styles
 --------------------------------------------------------------*/
