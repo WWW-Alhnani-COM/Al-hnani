@@ -1688,108 +1688,125 @@ section,
   font-size: 18px;
   opacity: 0.6;
 }
-
 /*--------------------------------------------------------------
-# Navigation Menu - Mobile
+# Navigation Menu - Mobile (قائمة جانبية)
 --------------------------------------------------------------*/
 @media (max-width: 1199px) {
+  
+  /* زر الهامبرجر */
   .mobile-nav-toggle {
-    color: var(--accent-color);
+    color: #00f2fe;
     font-size: 28px;
     line-height: 0;
-    margin-right: 10px;
     cursor: pointer;
-    transition: color 0.3s;
-    background: rgba(0, 242, 254, 0.1);
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 242, 254, 0.3);
-  }
-
-  .mobile-nav-toggle:hover {
-    color: #fff;
-    background: var(--accent-color);
-  }
-
-  .navmenu ul {
-    display: none;
-    flex-direction: column;
-    background-color: #181818;
-    border: 1px solid rgba(0, 242, 254, 0.15);
-    border-radius: 12px;
-    padding: 10px 0;
-    list-style: none;
-    position: absolute;
-    inset: 60px 20px 20px 20px;
-    margin: 0;
-    overflow-y: auto;
     transition: 0.3s;
-    z-index: 9998;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    position: relative;
   }
 
+  /* تجهيز القائمة كشريط جانبي */
+  .navmenu ul {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    height: 100vh;
+    background: rgba(10, 10, 20, 0.95);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px 30px 20px;
+    margin: 0;
+    list-style: none;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9998;
+    border-left: 1px solid rgba(0, 242, 254, 0.15);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    gap: 5px;
+  }
+
+  /* فتح القائمة الجانبية */
+  .mobile-nav-active .navmenu ul {
+    right: 0;
+  }
+
+  /* تنسيق روابط القائمة */
   .navmenu a,
   .navmenu a:focus {
-    color: var(--default-color);
-    padding: 12px 20px;
+    color: #fff;
+    padding: 14px 20px;
     font-size: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s;
+    font-weight: 500;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    border-radius: 10px;
+    transition: all 0.3s;
     text-decoration: none;
+    border: 1px solid transparent;
   }
 
   .navmenu a:hover,
   .navmenu .active,
   .navmenu .active:focus {
-    color: var(--accent-color);
-    padding-left: 25px;
+    color: #00f2fe;
+    background: rgba(0, 242, 254, 0.08);
+    border-color: rgba(0, 242, 254, 0.2);
+    padding-right: 25px;
   }
 
-  .navmenu a i,
-  .navmenu a:focus i {
-    background-color: rgba(0, 242, 254, 0.1);
-    color: var(--accent-color);
+  /* أيقونات التواصل داخل القائمة */
+  .mobile-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .navmenu a:hover i,
-  .navmenu .active i,
-  .navmenu .active:focus i {
-    background-color: var(--accent-color);
+  .mobile-social-links a {
     color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 18px;
+    text-decoration: none;
   }
 
+  .mobile-social-links a:hover {
+    background: #00f2fe;
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3);
+  }
+
+  /* خلفية داكنة عند فتح القائمة */
   .mobile-nav-active {
     overflow: hidden;
   }
 
-  .mobile-nav-active .navmenu {
+  .mobile-nav-active::after {
+    content: '';
     position: fixed;
-    overflow: hidden;
     inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    transition: 0.3s;
+    background: rgba(0, 0, 0, 0.6);
     z-index: 9997;
   }
 
-  .mobile-nav-active .navmenu ul {
-    display: flex;
-  }
-
+  /* زر الإغلاق */
   .mobile-nav-active .mobile-nav-toggle {
+    position: fixed;
+    top: 20px;
+    right: 295px;
     color: #fff;
-    background: var(--accent-color);
-    border-color: var(--accent-color);
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 9999;
+    font-size: 32px;
+    z-index: 10000;
   }
 }
 /*--------------------------------------------------------------
