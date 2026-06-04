@@ -220,6 +220,27 @@
   margin-right: 0 !important;
   margin-left: 0 !important;
 }
+    /* ==============================================
+   تثبيت لون زر الهامبرجر وجعله واضحاً دائماً
+   ============================================== */
+.mobile-nav-toggle {
+  color: #00f2fe !important;
+  background: rgba(0, 242, 254, 0.2) !important;
+  border-radius: 10px !important;
+  padding: 8px 12px !important;
+  font-size: 28px !important;
+  transition: all 0.3s ease !important;
+}
+
+.mobile-nav-toggle:hover {
+  background: rgba(0, 242, 254, 0.35) !important;
+  transform: scale(1.05);
+}
+
+/* عند فتح القائمة */
+.mobile-nav-active .mobile-nav-toggle {
+  background: rgba(0, 242, 254, 0.3) !important;
+}
   </style>
 </head>
 
@@ -253,16 +274,24 @@
       </a>
 
      
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#resume">Resume</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+     <nav id="navmenu" class="navmenu">
+  <ul>
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  
+  <!-- أيقونات السوشل ميديا في أسفل القائمة الجانبية -->
+  <div class="mobile-social-links">
+    <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
+    <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
+    <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
+  </div>
+</nav>
       <div class="header-social-links">
         <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" class="linkedin" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank"><i class="bi bi-linkedin"></i></a>
         <a href="https://www.facebook.com/profile.php?id=100072132612398" class="facebook" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><i class="bi bi-facebook"></i></a>
