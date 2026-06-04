@@ -15,21 +15,29 @@
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!-- ✅ تحسين الخطوط: إبقاء Roboto فقط مع Font Display Swap -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"></noscript>
 
+  <!-- ✅ تحميل مسبق لصورة الـ Hero (LCP) -->
   <link rel="preload" as="image" href="assets/img/MuhammadAlhnani.webp" fetchpriority="high">
 
+  <!-- Vendor CSS (تأجيل الملفات غير الحرجة) -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <!-- Swiper & GLightbox سيتم تحميلهم عند الحاجة -->
 
+  <!-- Main CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
 
   <meta name="google-site-verification" content="rf_J7WkCo6wwXKz0jnWzxWg3jJtW5H58N2x6X2YgiYE" />
 
   <style>
+    /* =========================================
+       الأنماط الأساسية والمحسّنة
+    ========================================= */
     section {
       min-height: 100vh;
       background: transparent !important;
@@ -37,6 +45,7 @@
       contain-intrinsic-size: 500px;
     }
 
+    /* تأثير التوهج */
     .ambient-glow {
       position: fixed;
       top: 0;
@@ -60,6 +69,7 @@
       opacity: 0.85;
     }
 
+    /* ✅ استبدال AOS بأنيميشن CSS خفيف */
     .fade-up {
       opacity: 0;
       transform: translateY(30px);
@@ -70,6 +80,9 @@
       transform: translateY(0);
     }
 
+    /* =========================================
+       قسم LinkedIn (محتفظ به)
+    ========================================= */
     .linkedin-cta-fullscreen {
       min-height: 100vh;
       display: flex;
@@ -175,7 +188,9 @@
       margin-left: 0 !important;
     }
     
-    /* تثبيت لون زر الهامبرجر */
+    /* ==============================================
+       تثبيت لون زر الهامبرجر وجعله واضحاً دائماً
+       ============================================== */
     .mobile-nav-toggle {
       color: #00f2fe !important;
       background: rgba(0, 242, 254, 0.2) !important;
@@ -190,11 +205,14 @@
       transform: scale(1.05);
     }
 
+    /* عند فتح القائمة */
     .mobile-nav-active .mobile-nav-toggle {
       background: rgba(0, 242, 254, 0.3) !important;
     }
     
-    /* إخفاء أيقونات الهيدر في الموبايل وإظهار أيقونات القائمة */
+    /* ==============================================
+       إخفاء أيقونات الهيدر في الموبايل وإظهار أيقونات القائمة
+       ============================================== */
     @media (max-width: 991px) {
       .header .header-social-links,
       .header-social-links {
@@ -234,16 +252,18 @@
 </head>
 
 <body class="index-page">
+  <!-- تأثير التوهج -->
   <div class="ambient-glow">
     <div class="glow-ball" id="glowBall"></div>
   </div>
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
-      
-      <!-- زر الهامبرجر (في الجهة اليسرى - أول عنصر) -->
-      <i class="mobile-nav-toggle d-xl-none bi bi-list" id="mobileNavToggle"></i>
-      
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/Logo.png" alt="Mohammed AL-Hnani" width="40" height="40">
+        <h1 class="sitename">MOHAMMAD</h1>
+      </a>
+
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
@@ -261,13 +281,11 @@
           <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
           <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
         </div>
-      </nav>
-      
-      <!-- الشعار (في الجهة اليمنى) -->
-      <a href="index.html" class="logo d-flex align-items-center">
+        <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/Logo.png" alt="Mohammed AL-Hnani" width="40" height="40">
         <h1 class="sitename">MOHAMMAD</h1>
       </a>
+      </nav>
       
       <div class="header-social-links d-none d-xl-flex">
         <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" class="linkedin" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank"><i class="bi bi-linkedin"></i></a>
@@ -276,12 +294,14 @@
         <a href="https://github.com/WWW-Alhnani-COM" class="github" aria-label="GitHub" rel="noopener noreferrer" target="_blank"><i class="bi bi-github"></i></a>
       </div>
       
+      <i class="mobile-nav-toggle d-xl-none bi bi-list" id="mobileNavToggle"></i>
     </div>
   </header>
 
   <main class="main">
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
+      <!-- <img src="assets/img/MuhammadAlhnani.webp" alt="Mohammed Al-Hanani - مطور ويب وتطبيقات جوال محترف" width="1200" height="800" fetchpriority="high"> -->
       <div class="container text-center fade-up">
         <h2>Mohammed Al-Hanani</h2>
         <p>FULL-STACK WEB & MOBILE DEVELOPER</p>
@@ -523,7 +543,9 @@
   <div id="preloader"></div>
 
   <script>
-    // سكربت الهامبرجر
+    // ========================================
+    // سكربت موحد لقائمة الهامبرجر
+    // ========================================
     (function() {
       const toggleBtn = document.getElementById('mobileNavToggle');
       const navmenu = document.getElementById('navmenu');
@@ -590,6 +612,7 @@
       animateGlow();
     })();
 
+    // زر العودة للأعلى وإخفاء البريلودر
     window.addEventListener('load', function() {
       const preloader = document.getElementById('preloader');
       if (preloader) preloader.style.display = 'none';
@@ -606,6 +629,7 @@
       });
     }
 
+    // fade-up animation
     const fadeEls = document.querySelectorAll('.fade-up');
     const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
