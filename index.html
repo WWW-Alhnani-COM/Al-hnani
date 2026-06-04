@@ -243,12 +243,12 @@
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
-              <i class="mobile-nav-toggle d-xl-none bi bi-list" id="mobileNavToggle"></i>
-
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
         <img src="assets/img/Logo.png" alt="Mohammed AL-Hnani" width="40" height="40">
         <h1 class="sitename">MOHAMMAD</h1>
       </a>
+
+     
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
@@ -265,6 +265,8 @@
         <a href="https://wa.me/+967711447801" class="whatsapp" aria-label="WhatsApp" rel="noopener noreferrer" target="_blank"><i class="bi bi-whatsapp"></i></a>
         <a href="https://github.com/WWW-Alhnani-COM" class="github" aria-label="GitHub" rel="noopener noreferrer" target="_blank"><i class="bi bi-github"></i></a>
       </div>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list" id="mobileNavToggle"></i>
+
     </div>
   </header>
 
@@ -618,12 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
       animateGlow();
     })();
 
-    // ========== 2. القائمة الجوالية بدون Bootstrap ==========
-    document.getElementById('mobileNavToggle').addEventListener('click', function() {
-      document.getElementById('navmenu').classList.toggle('mobile-nav-active');
-      this.classList.toggle('bi-list');
-      this.classList.toggle('bi-x');
-    });
+  
 
     // ========== 3. زر العودة للأعلى و إخفاء البريلودر ==========
     window.addEventListener('load', function() {
