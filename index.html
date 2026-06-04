@@ -216,6 +216,10 @@
       .btn-linkedin { padding: 12px 30px; font-size: 0.95rem; }
       .linkedin-cta-icon { font-size: 3.5rem; }
     }
+    .logo {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
   </style>
 </head>
 
@@ -569,70 +573,109 @@
   <!-- ✅ التحسين: إزالة جميع السكربتات الثقيلة (GSAP, Bootstrap JS, AOS, Isotope) والتحميل الديناميكي -->
   <script defer src="assets/vendor/php-email-form/validate.js"></script>
   <!-- سيتم تحميل Swiper و GLightbox عند الحاجة -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
 
-  const toggle = document.getElementById('mobileNavToggle');
-
-  toggle.addEventListener('click', () => {
-
-    document.body.classList.toggle('mobile-nav-active');
-
-    if (document.body.classList.contains('mobile-nav-active')) {
-      toggle.classList.remove('bi-list');
-      toggle.classList.add('bi-x');
-    } else {
-      toggle.classList.remove('bi-x');
-      toggle.classList.add('bi-list');
-    }
-
-  });
-
-  document.querySelectorAll('.navmenu a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.body.classList.remove('mobile-nav-active');
-      toggle.classList.remove('bi-x');
-      toggle.classList.add('bi-list');
-    });
-  });
-
-});
-</script>
-  <script>
-    // ========== 1. التوهج المحيط ==========
-    (function() {
-      const glowBall = document.getElementById('glowBall');
-      if (!glowBall) return;
-      let mouseX = 0, mouseY = 0, ballX = 0, ballY = 0;
-      function updateGlowPosition(e) {
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        mouseX = clientX; mouseY = clientY;
-      }
-      function animateGlow() {
-        ballX += (mouseX - ballX) * 0.35;
-        ballY += (mouseY - ballY) * 0.35;
-        glowBall.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate3d(-50%, -50%, 0)`;
-        requestAnimationFrame(animateGlow);
-      }
-      window.addEventListener('mousemove', updateGlowPosition);
-      window.addEventListener('touchmove', updateGlowPosition, { passive: false });
-      animateGlow();
-    })();
-
+ <script>
+  // ========================================
+  // سكربت موحد لقائمة الهامبرجر
+  // ========================================
   
-
-    // ========== 3. زر العودة للأعلى و إخفاء البريلودر ==========
-    window.addEventListener('load', function() {
-      document.getElementById('preloader').style.display = 'none';
+  (function() {
+    const toggleBtn = document.getElementById('mobileNavToggle');
+    const navmenu = document.getElementById('navmenu');
+    const body = document.body;
+    
+    if (!toggleBtn) {
+      console.log('زر الهامبرجر غير موجود');
+      return;
+    }
+    
+    // دالة فتح/إغلاق القائمة
+    function toggleMobileMenu() {
+      body.classList.toggle('mobile-nav-active');
+      
+      // تغيير أيقونة الزر
+      if (body.classList.contains('mobile-nav-active')) {
+        toggleBtn.classList.remove('bi-list');
+        toggleBtn.classList.add('bi-x');
+        console.log('القائمة مفتوحة');
+      } else {
+        toggleBtn.classList.remove('bi-x');
+        toggleBtn.classList.add('bi-list');
+        console.log('القائمة مغلقة');
+      }
+    }
+    
+    // إضافة حدث النقر للزر
+    toggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleMobileMenu();
     });
-    document.getElementById('scroll-top').addEventListener('click', function(e) {
+    
+    // إغلاق القائمة عند الضغط على أي رابط في القائمة
+    const navLinks = document.querySelectorAll('.navmenu a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (body.classList.contains('mobile-nav-active')) {
+          body.classList.remove('mobile-nav-active');
+          toggleBtn.classList.remove('bi-x');
+          toggleBtn.classList.add('bi-list');
+        }
+      });
+    });
+    
+    // إغلاق القائمة عند الضغط خارجها
+    document.addEventListener('click', function(e) {
+      if (body.classList.contains('mobile-nav-active')) {
+        if (!navmenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+          body.classList.remove('mobile-nav-active');
+          toggleBtn.classList.remove('bi-x');
+          toggleBtn.classList.add('bi-list');
+        }
+      }
+    });
+    
+    console.log('سكربت الهامبرجر يعمل ✅');
+  })();
+
+  // ========== باقي السكربتات الأخرى ==========
+  
+  // التوهج المحيط
+  (function() {
+    const glowBall = document.getElementById('glowBall');
+    if (!glowBall) return;
+    let mouseX = 0, mouseY = 0, ballX = 0, ballY = 0;
+    function updateGlowPosition(e) {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      mouseX = clientX; mouseY = clientY;
+    }
+    function animateGlow() {
+      ballX += (mouseX - ballX) * 0.15;
+      ballY += (mouseY - ballY) * 0.15;
+      glowBall.style.transform = `translate(${ballX}px, ${ballY}px) translate(-50%, -50%)`;
+      requestAnimationFrame(animateGlow);
+    }
+    window.addEventListener('mousemove', updateGlowPosition);
+    window.addEventListener('touchmove', updateGlowPosition, { passive: false });
+    animateGlow();
+  })();
+
+  // زر العودة للأعلى وإخفاء البريلودر
+  window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.style.display = 'none';
+  });
+  
+  const scrollTop = document.getElementById('scroll-top');
+  if (scrollTop) {
+    scrollTop.addEventListener('click', function(e) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     window.addEventListener('scroll', function() {
-      document.getElementById('scroll-top').style.display = window.scrollY > 200 ? 'flex' : 'none';
+      scrollTop.style.display = window.scrollY > 200 ? 'flex' : 'none';
     });
+  }
 
     // ========== 4. استبدال AOS: Intersection Observer للـ fade-up ==========
     const fadeEls = document.querySelectorAll('.fade-up');
