@@ -171,16 +171,19 @@ h6 {
 }
 .header .container-fluid {
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
-.header .header-social-links {
-  margin-left: auto;
-}
+
 
 /* .header .header-social-links {
   padding-right: 15px;
 } */
-
+.header .header-social-links {
+  display: flex;
+  gap: 8px;
+}
 .header-social-links a {
   color: var(--default-color);
   background: rgba(255, 255, 255, 0.08);
@@ -248,6 +251,11 @@ h6 {
     order: 3;
   }
 } */
+.header .navmenu {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
 
 .scrolled .header {
   --background-color: rgba(0, 0, 0, 0.6);
