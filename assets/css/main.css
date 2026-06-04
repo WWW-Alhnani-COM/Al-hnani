@@ -235,7 +235,7 @@ h6 {
   line-height: 0px;
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
   .header .logo {
     order: 1;
   }
@@ -247,7 +247,7 @@ h6 {
   .header .navmenu {
     order: 3;
   }
-}
+} */
 
 .scrolled .header {
   --background-color: rgba(0, 0, 0, 0.6);
