@@ -4,457 +4,405 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
   <title>Mohammed AL-Hanani | مطور ويب وتطبيقات</title>
-  <meta name="description" content="Mohammed AL-Hnani - مطور ويب وتطبيقات محترف متخصص في Flutter و Laravel. تقديم حلول برمجية عالية الجودة لتطبيقات الجوال والويب.">
-  <meta name="keywords" content="مبرمج ويب, مطور ويب محترف, برمجة مواقع, تطوير تطبيقات جوال, فول ستاك, Flutter, Laravel, برمجة اندرويد, برمجة ايفون, Yemen developer, مبرمج يمني, مطور تطبيقات, تصميم مواقع, برمجة PHP, تطوير الويب, مبرمج محمد الحناني, محمد عبد الرؤوف الحناني, المهندس محمد الحناني, الحناني مبرمج, الحناني مطور ويب, freelance developer Yemen, إنشاء مواقع ويب, تطبيقات هجينة, تطوير Backend, استضافة مواقع, حلول برمجية, شركة برمجة يمنية, Mohammed Al-Hanani web developer">
-  <meta property="og:image" content="https://al-hnani.vercel.app/assets/img/Muh.jpg">
-  <meta property="og:url" content="https://al-hnani.vercel.app/">
-  <meta property="og:type" content="website">
-  <meta name="google-site-verification" content="ziQ0Ury1yiwH_jbF717pkJoWgPvsCxURSvfm-4stVug" />
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- خط Roboto -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- تحميل مسبق لصورة الهيرو -->
-  <link rel="preload" as="image" href="assets/img/MuhammadAlhnani.webp" fetchpriority="high">
-
-  <!-- Vendor CSS -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Main CSS -->
-  <link href="assets/css/main.css" rel="stylesheet">
-
+  
+  <!-- Bootstrap Icons (ضرورية للأيقونات) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
   <style>
-    /* =========================================
-       الأنماط الأساسية والمحسّنة
-    ========================================= */
-    section {
-      min-height: 100vh;
-      background: transparent !important;
+    /* ========================================
+       هيدر جديد - تصميم عصري بالكامل
+    ======================================== */
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-
-    /* تأثير التوهج */
-    .ambient-glow {
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    
+    /* ===== الهيدر الجديد ===== */
+    .new-header {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      pointer-events: none;
+      right: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+      padding: 15px 5%;
+      transition: all 0.3s ease;
     }
-    .glow-ball {
+    
+    .new-header.scrolled {
+      padding: 10px 5%;
+      background: rgba(0, 0, 0, 0.95);
+      border-bottom-color: rgba(0, 242, 254, 0.4);
+    }
+    
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    
+    /* ===== الشعار ===== */
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #00f2fe, #4facfe);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #000;
+    }
+    
+    .logo-text {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    
+    .logo-text span {
+      color: #00f2fe;
+    }
+    
+    /* ===== قائمة سطح المكتب ===== */
+    .desktop-nav {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .desktop-nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
+      color: #00f2fe;
+      background: rgba(0, 242, 254, 0.1);
+    }
+    
+    .desktop-nav a.active::after {
+      content: '';
       position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 2px;
+      background: #00f2fe;
+      border-radius: 2px;
+    }
+    
+    /* ===== أيقونات السوشل ميديا (سطح المكتب) ===== */
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .social-icons a {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .social-icons a:hover {
+      background: #00f2fe;
+      color: #000;
+      transform: translateY(-3px);
+    }
+    
+    /* ===== زر الهامبرجر (موبايل فقط) ===== */
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 45px;
+      height: 45px;
+      position: relative;
+      z-index: 1002;
+    }
+    
+    .hamburger-btn span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: #00f2fe;
+      margin: 6px auto;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    
+    .hamburger-btn.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    
+    .hamburger-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger-btn.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    
+    /* ===== القائمة الجانبية (موبايل) ===== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 350px;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(30px);
+      z-index: 1001;
+      transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      padding: 100px 25px 40px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+      border-left: 1px solid rgba(0, 242, 254, 0.2);
+    }
+    
+    .mobile-menu.open {
+      right: 0;
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+    }
+    
+    .mobile-nav-links a {
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 20px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a.active {
+      color: #00f2fe;
+      background: rgba(0, 242, 254, 0.1);
+      padding-right: 30px;
+    }
+    
+    /* أيقونات السوشل داخل القائمة الجانبية */
+    .mobile-social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 25px 0;
+      margin-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .mobile-social-icons a {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 22px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .mobile-social-icons a:hover {
+      background: #00f2fe;
+      color: #000;
+      transform: translateY(-3px);
+    }
+    
+    /* طبقة خلفية عند فتح القائمة */
+    .menu-overlay {
+      position: fixed;
       top: 0;
       left: 0;
-      width: 1000px;
-      height: 1000px;
-      background: radial-gradient(circle, rgba(0, 242, 254, 0.55) 0%, rgba(127, 0, 255, 0.35) 50%, rgba(0, 0, 0, 0) 85%);
-      border-radius: 50%;
-      filter: blur(130px);
-      transform: translate(-50%, -50%);
-      opacity: 0.85;
-    }
-
-    /* أنيميشن fade-up */
-    .fade-up {
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      visibility: hidden;
+      transition: all 0.3s ease;
     }
-    .fade-up.visible {
+    
+    .menu-overlay.active {
       opacity: 1;
-      transform: translateY(0);
+      visibility: visible;
     }
-
-    /* قسم LinkedIn */
-    .linkedin-cta-fullscreen {
+    
+    /* ===== استجابة للشاشات ===== */
+    @media (max-width: 992px) {
+      .desktop-nav {
+        display: none;
+      }
+      
+      .social-icons {
+        display: none;
+      }
+      
+      .hamburger-btn {
+        display: block;
+      }
+      
+      .logo-text {
+        font-size: 20px;
+      }
+      
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+      }
+    }
+    
+    @media (min-width: 993px) {
+      .mobile-menu,
+      .menu-overlay {
+        display: none;
+      }
+    }
+    
+    /* ===== المساحة للهيدر ===== */
+    .main-content {
+      margin-top: 80px;
+      padding: 40px 5%;
+    }
+    
+    /* مؤقت للمحتوى التجريبي */
+    .hero-section {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      background: linear-gradient(135deg, rgba(0, 119, 181, 0.1) 0%, rgba(127, 0, 255, 0.1) 100%);
-      margin: 0;
-      padding: 80px 20px;
-      backdrop-filter: blur(10px);
-      overflow: hidden;
-    }
-    .linkedin-cta-fullscreen::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(127, 0, 255, 0.05) 50%, transparent 70%);
-      animation: rotateBackground 20s linear infinite;
-      z-index: 0;
-    }
-    @keyframes rotateBackground {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .linkedin-cta-content {
       text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-      padding: 60px 40px;
-      background: rgba(10, 10, 20, 0.7);
-      backdrop-filter: blur(20px);
-      border-radius: 30px;
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 242, 254, 0.2);
+      background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
     }
-    .linkedin-cta-icon {
-      font-size: 5rem;
-      color: #0077b5;
+    
+    .hero-section h1 {
+      font-size: 48px;
       margin-bottom: 20px;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-    }
-    .linkedin-cta-content h3 {
-      color: #fff;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-    .linkedin-cta-content p {
-      color: #ddd;
-      font-size: 1.2rem;
-      margin-bottom: 35px;
-      line-height: 1.8;
-    }
-    .btn-linkedin {
-      background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
-      color: white;
-      padding: 15px 40px;
-      border-radius: 50px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      transition: all 0.3s ease;
-      font-size: 1.1rem;
-      box-shadow: 0 5px 20px rgba(0, 119, 181, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .btn-linkedin:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 30px rgba(0, 119, 181, 0.6);
-      background: linear-gradient(135deg, #0088c8 0%, #00b0f0 100%);
-      color: white;
-    }
-
-    @media (max-width: 768px) {
-      .linkedin-cta-content {
-        padding: 40px 20px;
-        margin: 0 15px;
-      }
-      .linkedin-cta-content h3 { font-size: 1.8rem; }
-      .linkedin-cta-content p { font-size: 1rem; }
-      .btn-linkedin { padding: 12px 30px; font-size: 0.95rem; }
-      .linkedin-cta-icon { font-size: 3.5rem; }
-    }
-
-    /* =========================================
-       إصلاح شامل لقائمة الموبايل
-    ========================================= */
-    
-    /* للشاشات الصغيرة والمتوسطة (تابلت والهواتف) */
-    @media (max-width: 991px) {
-      
-      /* إخفاء أيقونات السوشل في الهيدر العلوي - بقوة!!! */
-      .header .header-social-links,
-      .header-social-links,
-      div.header-social-links,
-      .header-social-links.d-none.d-lg-flex,
-      .header-social-links.d-xl-flex {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        width: 0 !important;
-        height: 0 !important;
-        overflow: hidden !important;
-        position: absolute !important;
-        pointer-events: none !important;
-      }
-      
-      /* إظهار زر الهامبرجر */
-      .mobile-nav-toggle {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        width: 44px;
-        height: 44px;
-        background: rgba(0, 242, 254, 0.1);
-        border: 1px solid rgba(0, 242, 254, 0.3);
-        border-radius: 12px;
-        font-size: 28px;
-        color: #00f2fe;
-        cursor: pointer;
-        transition: 0.3s;
-        z-index: 10001;
-        position: relative;
-        margin-right: 10px;
-      }
-      
-      .mobile-nav-toggle:hover {
-        background: rgba(0, 242, 254, 0.2);
-        transform: scale(1.05);
-      }
-      
-      /* القائمة الجانبية */
-      .navmenu ul {
-        position: fixed;
-        top: 0;
-        right: -320px;
-        width: 300px;
-        height: 100vh;
-        background: rgba(8, 8, 16, 0.98);
-        backdrop-filter: blur(25px);
-        display: flex;
-        flex-direction: column;
-        padding: 100px 25px 30px 25px;
-        margin: 0;
-        list-style: none;
-        transition: right 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        z-index: 9999;
-        border-left: 1px solid rgba(0, 242, 254, 0.2);
-        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.6);
-        gap: 8px;
-      }
-
-      /* فتح القائمة */
-      body.mobile-nav-active .navmenu ul {
-        right: 0;
-      }
-
-      /* تنسيق الروابط */
-      .navmenu a,
-      .navmenu a:focus {
-        color: #fff;
-        padding: 14px 20px;
-        font-size: 17px;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        border-radius: 12px;
-        transition: all 0.25s;
-        text-decoration: none;
-        background: transparent;
-      }
-
-      .navmenu a:hover,
-      .navmenu .active {
-        color: #00f2fe;
-        background: rgba(0, 242, 254, 0.1);
-        padding-right: 28px;
-      }
-
-      /* أيقونات التواصل داخل القائمة */
-      .mobile-social-links {
-        display: flex !important;
-        justify-content: center;
-        gap: 20px;
-        padding: 30px 0 20px 0;
-        margin-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .mobile-social-links a {
-        color: #fff;
-        background: rgba(255, 255, 255, 0.08);
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        font-size: 22px;
-        text-decoration: none;
-      }
-
-      .mobile-social-links a:hover {
-        background: #00f2fe;
-        color: #000;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
-      }
-
-      /* طبقة خلفية عند فتح القائمة */
-      body.mobile-nav-active {
-        overflow: hidden;
-      }
-
-      body.mobile-nav-active::after {
-        content: '';
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 9998;
-        backdrop-filter: blur(3px);
-      }
-
-      /* تثبيت زر الإغلاق */
-      body.mobile-nav-active .mobile-nav-toggle {
-        position: fixed;
-        top: 20px;
-        right: 280px;
-        background: rgba(0, 242, 254, 0.2);
-        z-index: 10002;
-      }
-      
-      body.mobile-nav-active .mobile-nav-toggle i::before {
-        content: "\f659";
-      }
     }
     
-    /* للشاشات الصغيرة جداً */
-    @media (max-width: 576px) {
-      .navmenu ul {
-        width: 85%;
-        right: -85%;
-      }
-      body.mobile-nav-active .mobile-nav-toggle {
-        right: calc(85% - 50px);
-      }
-      .mobile-social-links {
-        gap: 15px;
-      }
-      .mobile-social-links a {
-        width: 42px;
-        height: 42px;
-        font-size: 18px;
-      }
+    .hero-section h1 span {
+      color: #00f2fe;
     }
     
-    /* للشاشات الكبيرة - إخفاء عناصر الموبايل */
-    @media (min-width: 992px) {
-      .mobile-nav-toggle {
-        display: none !important;
-      }
-      .mobile-social-links {
-        display: none !important;
-      }
+    .hero-section p {
+      font-size: 18px;
+      color: #aaa;
     }
-
-    /* تنسيقات إضافية */
-    .aboutme-photo {
-      width: 220px;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid #00f2fe;
-      box-shadow: 0 8px 32px rgba(0, 242, 254, 0.2);
-      display: block;
-      margin: 0 auto 24px auto;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .aboutme-photo:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 40px rgba(0, 242, 254, 0.35);
-    }
-
-    #hero {
-      position: relative;
-      overflow: hidden;
-    }
-    #hero-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100% !important;
-      height: 100% !important;
-      z-index: 1;
-      pointer-events: none;
-    }
-    #hero .container {
-      position: relative;
-      z-index: 2;
-    }
-    #hero img {
-      opacity: 0.4;
-    }
-    
-    @media (max-width: 991px) {
-      .header .container-fluid {
-        padding: 0 15px;
-      }
-      .logo h1 {
-        font-size: 20px;
-      }
-    }
-     @media (max-width: 991px) {
-    .header .header-social-links,
-    .header-social-links {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-    }
-  }
   </style>
 </head>
+<body>
 
-<body class="index-page">
-  <div class="ambient-glow">
-    <div class="glow-ball" id="glowBall"></div>
-  </div>
-
- <header id="header" class="header d-flex align-items-center fixed-top">
-  <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+<!-- ===== الهيدر الجديد ===== -->
+<header class="new-header" id="newHeader">
+  <div class="header-container">
     
     <!-- الشعار -->
-    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-      <img src="assets/img/Logo.png" alt="Mohammed AL-Hnani" width="40" height="40">
-      <h1 class="sitename">MOHAMMAD</h1>
+    <a href="#" class="logo-area">
+      <div class="logo-icon">M</div>
+      <div class="logo-text">MOHAMMAD <span>AL-HANANI</span></div>
     </a>
     
-    <!-- زر الهامبرجر (يظهر فقط في الموبايل) -->
-    <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
-      <i class="bi bi-list"></i>
-    </button>
-    
-    <!-- القائمة (تتحول لقائمة جانبية في الموبايل) -->
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="#hero" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <!-- أيقونات السوشل داخل القائمة (تظهر فقط في الموبايل) -->
-      <div class="mobile-social-links">
-        <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
-        <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
-        <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
-        <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
-      </div>
+    <!-- قائمة سطح المكتب -->
+    <nav class="desktop-nav">
+      <a href="#home" class="active">الرئيسية</a>
+      <a href="#about">من أنا</a>
+      <a href="#services">خدماتي</a>
+      <a href="#portfolio">أعمالي</a>
+      <a href="#contact">اتصل بي</a>
     </nav>
     
-    <!-- أيقونات سطح المكتب (تختفي في الموبايل) -->
-    <div class="header-social-links" style="display: flex;">
+    <!-- أيقونات السوشل ميديا (سطح المكتب) -->
+    <div class="social-icons">
       <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
       <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
       <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
       <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
     </div>
     
+    <!-- زر الهامبرجر (موبايل) -->
+    <button class="hamburger-btn" id="hamburgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
   </div>
 </header>
+
+<!-- القائمة الجانبية (موبايل) -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-nav-links">
+    <a href="#home" class="active">الرئيسية</a>
+    <a href="#about">من أنا</a>
+    <a href="#services">خدماتي</a>
+    <a href="#portfolio">أعمالي</a>
+    <a href="#contact">اتصل بي</a>
+  </div>
+  
+  <!-- أيقونات السوشل داخل القائمة الجانبية -->
+  <div class="mobile-social-icons">
+    <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
+    <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
+    <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
+  </div>
+</div>
+
+<!-- طبقة خلفية عند فتح القائمة -->
+<div class="menu-overlay" id="menuOverlay"></div>
   <main class="main">
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
@@ -608,84 +556,122 @@
 
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
-
-  <script>
-    // قائمة الهامبرجر
-    (function() {
-      const toggleBtn = document.getElementById('mobileNavToggle');
-      const body = document.body;
-      let isOpen = false;
+<script>
+  // ========================================
+  // سكربت الهيدر الجديد
+  // ========================================
+  
+  (function() {
+    // عناصر القائمة
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    let isMenuOpen = false;
+    
+    // دالة فتح/إغلاق القائمة
+    function toggleMenu() {
+      isMenuOpen = !isMenuOpen;
       
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          isOpen = !isOpen;
-          
-          if (isOpen) {
-            body.classList.add('mobile-nav-active');
-            const icon = toggleBtn.querySelector('i');
-            if (icon) {
-              icon.classList.remove('bi-list');
-              icon.classList.add('bi-x');
-            }
-          } else {
-            body.classList.remove('mobile-nav-active');
-            const icon = toggleBtn.querySelector('i');
-            if (icon) {
-              icon.classList.remove('bi-x');
-              icon.classList.add('bi-list');
-            }
-          }
-        });
+      if (isMenuOpen) {
+        mobileMenu.classList.add('open');
+        menuOverlay.classList.add('active');
+        hamburgerBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        mobileMenu.classList.remove('open');
+        menuOverlay.classList.remove('active');
+        hamburgerBtn.classList.remove('active');
+        document.body.style.overflow = '';
       }
-      
-      // إغلاق القائمة عند الضغط على رابط
-      document.querySelectorAll('.navmenu a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (body.classList.contains('mobile-nav-active')) {
-            body.classList.remove('mobile-nav-active');
-            isOpen = false;
-            if (toggleBtn) {
-              const icon = toggleBtn.querySelector('i');
-              if (icon) {
-                icon.classList.remove('bi-x');
-                icon.classList.add('bi-list');
-              }
-            }
-          }
-        });
+    }
+    
+    // إضافة المستمعات
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', toggleMenu);
+    
+    // إغلاق القائمة عند الضغط على رابط
+    document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (isMenuOpen) toggleMenu();
       });
-    })();
-
-    // إخفاء البريلودر
-    window.addEventListener('load', function() {
-      const preloader = document.getElementById('preloader');
-      if (preloader) preloader.style.display = 'none';
     });
     
-    // زر العودة للأعلى
-    const scrollTop = document.getElementById('scroll-top');
-    if (scrollTop) {
-      scrollTop.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-      window.addEventListener('scroll', function() {
-        scrollTop.style.display = window.scrollY > 200 ? 'flex' : 'none';
-      });
-    }
-
-    // fade-up animation
-    const fadeEls = document.querySelectorAll('.fade-up');
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          fadeObserver.unobserve(entry.target);
+    // تأثير التمرير على الهيدر
+    const header = document.getElementById('newHeader');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // تفعيل الرابط النشط
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.desktop-nav a, .mobile-nav-links a');
+    
+    function updateActiveLink() {
+      let current = '';
+      const scrollPos = window.scrollY + 150;
+      
+      sections.forEach(section => {
+        if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+          current = section.getAttribute('id');
         }
       });
-    }, { threshold: 0.15 });
-    fadeEls.forEach(el => fadeObserver.observe(el));
-  </script>
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', updateActiveLink);
+    window.addEventListener('load', updateActiveLink);
+    
+    // تمرير سلس
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  })();
+  
+  // إخفاء البريلودر
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.style.display = 'none';
+  });
+  
+  // زر العودة للأعلى
+  const scrollTop = document.getElementById('scroll-top');
+  if (scrollTop) {
+    scrollTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', () => {
+      scrollTop.style.display = window.scrollY > 200 ? 'flex' : 'none';
+    });
+  }
+  
+  // fade-up animation
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  
+  document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+</script>
 </body>
 </html>
