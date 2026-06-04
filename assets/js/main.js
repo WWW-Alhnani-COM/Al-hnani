@@ -23,44 +23,6 @@
   window.addEventListener('load', toggleScrolled);
 
   /**
-   * ================================================
-   * تم تعطيل كود الموبايل الأصلي لأنه تم استبداله
-   * بكود مخصص في ملف HTML لتجنب التعارض
-   * ================================================
-   */
-  
-  /*
-  // Mobile nav toggle - ORIGINAL CODE (DISABLED)
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-
-  function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
-  }
-  mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
-
-  // Hide mobile nav on same-page/hash links
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
-      }
-    });
-  });
-
-  // Toggle mobile nav dropdowns
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
-  */
-
-  /**
    * Preloader
    */
   const preloader = document.querySelector('#preloader');
@@ -226,16 +188,13 @@
       const submitButton = contactForm.querySelector('button[type="submit"]');
       const loadingElement = contactForm.querySelector('.loading');
 
-      // Show loading state
       submitButton.disabled = true;
       if (loadingElement) loadingElement.style.display = 'block';
 
-      // Prepare form data
       const formData = new FormData(contactForm);
       formData.append('_template', 'table');
       formData.append('_autoresponse', 'شكراً لتواصلك! سنرد عليك قريباً.');
 
-      // Send to FormSubmit
       fetch('https://formsubmit.co/ajax/muhammadalhnani2004@gmail.com', {
         method: 'POST',
         body: formData
@@ -260,7 +219,6 @@
    * Show Toast Message
    */
   function showToast(message, type = 'success') {
-    // Create toast container if not exists
     let toastContainer = document.getElementById('toast-container');
     if (!toastContainer) {
       toastContainer = document.createElement('div');
@@ -273,7 +231,6 @@
       document.body.appendChild(toastContainer);
     }
 
-    // Create toast element
     const toast = document.createElement('div');
     toast.className = `toast-message ${type}`;
     toast.innerHTML = `
@@ -283,12 +240,10 @@
     
     toastContainer.appendChild(toast);
     
-    // Show toast
     setTimeout(() => {
       toast.classList.add('show');
     }, 10);
 
-    // Hide after 3 seconds
     setTimeout(() => {
       toast.classList.remove('show');
       setTimeout(() => {
@@ -297,7 +252,6 @@
     }, 3000);
   }
 
-  // Initialize when DOM is loaded
   document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
   });
