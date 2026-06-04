@@ -396,6 +396,14 @@
         font-size: 20px;
       }
     }
+     @media (max-width: 991px) {
+    .header .header-social-links,
+    .header-social-links {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+  }
   </style>
 </head>
 
@@ -404,46 +412,49 @@
     <div class="glow-ball" id="glowBall"></div>
   </div>
 
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/Logo.png" alt="Mohammed AL-Hnani" width="40" height="40">
-        <h1 class="sitename">MOHAMMAD</h1>
-      </a>
-      
-      <!-- زر الهامبرجر -->
-      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
-        <i class="bi bi-list"></i>
-      </button>
-      
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#resume">Resume</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <!-- أيقونات التواصل داخل القائمة الجانبية -->
-        <div class="mobile-social-links">
-          <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
-          <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
-          <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
-          <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
-        </div>
-      </nav>
-      
-      <!-- أيقونات سطح المكتب -->
-      <div class="header-social-links d-none d-xl-flex">
+ <header id="header" class="header d-flex align-items-center fixed-top">
+  <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+    
+    <!-- الشعار -->
+    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <img src="assets/img/Logo.png" alt="Mohammed AL-Hnani" width="40" height="40">
+      <h1 class="sitename">MOHAMMAD</h1>
+    </a>
+    
+    <!-- زر الهامبرجر (يظهر فقط في الموبايل) -->
+    <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
+      <i class="bi bi-list"></i>
+    </button>
+    
+    <!-- القائمة (تتحول لقائمة جانبية في الموبايل) -->
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <!-- أيقونات السوشل داخل القائمة (تظهر فقط في الموبايل) -->
+      <div class="mobile-social-links">
         <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
         <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
         <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
         <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
       </div>
+    </nav>
+    
+    <!-- أيقونات سطح المكتب (تختفي في الموبايل) -->
+    <div class="header-social-links" style="display: flex;">
+      <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
+      <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
+      <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
     </div>
-  </header>
-
+    
+  </div>
+</header>
   <main class="main">
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
