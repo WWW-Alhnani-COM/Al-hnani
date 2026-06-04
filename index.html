@@ -38,39 +38,6 @@
     /* =========================================
        الأنماط الأساسية والمحسّنة
     ========================================= */
-    .models-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-    }
-    .model-item {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 50%;
-      height: 50%;
-      opacity: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: auto;
-      perspective: 1000px;
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      transform: translate(-50%, -50%) scale(0.6);
-    }
-    .model-item.visible {
-      opacity: 0.8;
-      transform: translate(-50%, -50%) scale(0.8);
-    }
-    .model-item iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
     section {
       min-height: 100vh;
       background: transparent !important;
@@ -223,22 +190,6 @@
   <!-- تأثير التوهج -->
   <div class="ambient-glow">
     <div class="glow-ball" id="glowBall"></div>
-  </div>
-
-  <!-- خلفية النماذج (سيتم تحميلها عند الحاجة) -->
-  <div class="models-background" id="trigger-area">
-    <div class="model-item" id="model-flutter" data-model>
-      <iframe title="Flutter" data-src="https://sketchfab.com/models/c3a57c41d5c8403899a8f140a47b88ce/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0" loading="lazy"></iframe>
-    </div>
-    <div class="model-item" id="model-vue" data-model>
-      <iframe title="Vue.js" data-src="https://sketchfab.com/models/5dd11e7c8ee448bb8dcf765817074b22/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0" loading="lazy"></iframe>
-    </div>
-    <div class="model-item" id="model-ts" data-model>
-      <iframe title="TypeScript" data-src="https://sketchfab.com/models/84af2099cb8542549fb56eae0dbabdb5/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0" loading="lazy"></iframe>
-    </div>
-    <div class="model-item" id="model-github" data-model>
-      <iframe title="GitHub" data-src="https://sketchfab.com/models/ad77c76608ad45f8a109662cd25d6539/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0" loading="lazy"></iframe>
-    </div>
   </div>
 
   <header id="header" class="header d-flex align-items-center fixed-top">
@@ -563,9 +514,8 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
 
-  <!-- ✅ التحسين: إزالة جميع السكربتات الثقيلة (GSAP, Bootstrap JS, AOS, Isotope) والتحميل الديناميكي -->
+  <!-- ✅ سكربت خفيف بدون أي مكتبات ثقيلة -->
   <script defer src="assets/vendor/php-email-form/validate.js"></script>
-  <!-- سيتم تحميل Swiper و GLightbox عند الحاجة -->
 
   <script>
     // ========== 1. التوهج المحيط ==========
@@ -620,83 +570,9 @@
     }, { threshold: 0.2 });
     fadeEls.forEach(el => fadeObserver.observe(el));
 
-    // ========== 5. تحميل نماذج Sketchfab عند الاقتراب ==========
-    const modelObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const iframe = entry.target.querySelector('iframe');
-          if (iframe && iframe.dataset.src) {
-            iframe.src = iframe.dataset.src;
-            iframe.removeAttribute('data-src');
-          }
-          modelObserver.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '200px' });
-    document.querySelectorAll('[data-model]').forEach(model => modelObserver.observe(model));
-
-    // ========== 6. تفعيل النموذج المقابل للقسم المرئي (بديل GSAP) ==========
-    const sections = [
-      { id: 'hero', model: 'model-flutter' },
-      { id: 'about', model: 'model-vue' },
-      { id: 'resume', model: 'model-ts' },
-      { id: 'portfolio', model: 'model-github' }
-    ];
-    const models = {};
-    sections.forEach(s => { models[s.model] = document.getElementById(s.model); });
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.id;
-          const activeModel = sections.find(s => s.id === sectionId);
-          // إظهار النموذج المناسب وإخفاء الآخرين
-          Object.keys(models).forEach(key => {
-            if (activeModel && key === activeModel.model) {
-              models[key].classList.add('visible');
-            } else {
-              models[key].classList.remove('visible');
-            }
-          });
-        }
-      });
-    }, { threshold: 0.6 });
-    sections.forEach(s => {
-      const el = document.getElementById(s.id);
-      if (el) sectionObserver.observe(el);
-    });
-
-    // ========== 7. تأثير متابعة الماوس للنماذج (بديل GSAP خفيف) ==========
-    let currentModel = null;
-    function getVisibleModel() {
-      for (const key in models) {
-        if (models[key].classList.contains('visible')) return models[key];
-      }
-      return null;
-    }
-    function handleModelInteraction(e) {
-      if (!currentModel) return;
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      const xPct = (clientX / window.innerWidth - 0.5) * 100;
-      const yPct = (clientY / window.innerHeight - 0.5) * 100;
-      currentModel.style.transform = `translate(${xPct}px, ${yPct}px) scale(0.8)`;
-    }
-    window.addEventListener('mousemove', (e) => {
-      currentModel = getVisibleModel();
-      handleModelInteraction(e);
-    });
-    window.addEventListener('touchmove', (e) => {
-      currentModel = getVisibleModel();
-      handleModelInteraction(e);
-    }, { passive: false });
-    window.addEventListener('mouseleave', () => {
-      if (currentModel) currentModel.style.transform = 'translate(-50%, -50%) scale(0.8)';
-    });
-
-    // ========== 8. تحميل Swiper عند الحاجة ==========
+    // ========== 5. تحميل Swiper عند الحاجة ==========
     const swiperObserver = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        // تحميل CSS + JS ديناميكيًا
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = 'assets/vendor/swiper/swiper-bundle.min.css';
@@ -718,7 +594,7 @@
     }, { threshold: 0.1 });
     swiperObserver.observe(document.getElementById('testimonials'));
 
-    // ========== 9. تحميل GLightbox للمعرض ==========
+    // ========== 6. تحميل GLightbox للمعرض ==========
     const lightboxObserver = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         const link = document.createElement('link');
@@ -736,7 +612,7 @@
     }, { threshold: 0.1 });
     lightboxObserver.observe(document.getElementById('portfolio'));
 
-    // ========== 10. تحميل Three.js عند دخول الهيرو (اختياري) ==========
+    // ========== 7. تحميل Three.js عند دخول الهيرو (اختياري) ==========
     const heroObserver = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         import('https://unpkg.com/three@0.160.0/build/three.module.js').then(THREE => {
@@ -751,7 +627,7 @@
           const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
           camera.position.z = 1;
           const starsGeo = new THREE.BufferGeometry();
-          const count = 1500; // قللنا العدد للأداء
+          const count = 1500;
           const pos = new Float32Array(count * 3);
           for (let i = 0; i < count * 3; i++) pos[i] = (Math.random() - 0.5) * 5;
           starsGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
