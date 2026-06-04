@@ -151,22 +151,25 @@ h6 {
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border-bottom: 1px solid rgba(0, 242, 254, 0.1);
-  padding: 20px 0;
+  padding: clamp(10px, 2vw, 20px) 0;
   transition: all 0.5s;
   z-index: 997;
 }
 
+
+
+
+.header .logo img {
+  max-height: clamp(28px, 4vw, 36px);
+}
 .header .logo {
   line-height: 1;
 }
 
-.header .logo img {
-  max-height: 36px;
-  margin-right: 8px;
-}
+
 
 .header .logo h1 {
-  font-size: 30px;
+  font-size: clamp(20px, 3vw, 30px);
   margin: 0;
   font-weight: 700;
   color: var(--heading-color);
@@ -1927,7 +1930,7 @@ section {
 
 /* طبقة شفافة لتمكين الماوس من الوصول للشعار */
 .main {
-    pointer-events: none; 
+    pointer-events: auto;
 }
 section .container, header, footer, a, button {
     pointer-events: auto; /* إعادة تفعيل الماوس للأزرار والنصوص فقط */
