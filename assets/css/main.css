@@ -1932,3 +1932,31 @@ section {
 section .container, header, footer, a, button {
     pointer-events: auto; /* إعادة تفعيل الماوس للأزرار والنصوص فقط */
 }
+
+/* ==============================================
+   إخفاء أيقونات الهيدر في الموبايل - حل نهائي
+   ============================================== */
+@media (max-width: 991px) {
+  /* استهداف جميع الاحتمالات */
+  .header .header-social-links,
+  .header-social-links,
+  div.header-social-links,
+  .header .header-social-links.d-none.d-lg-flex,
+  .header .header-social-links.d-none.d-xl-flex,
+  .d-none.d-lg-flex.header-social-links,
+  .d-none.d-xl-flex.header-social-links,
+  header .header-social-links,
+  .header-social-links.d-none,
+  [class*="header-social-links"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    pointer-events: none !important;
+  }
+}
