@@ -15,36 +15,28 @@
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
   <!-- خط Roboto -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
   <!-- تحميل مسبق لصورة الهيرو -->
   <link rel="preload" as="image" href="assets/img/MuhammadAlhnani.webp" fetchpriority="high">
 
-  <!-- Vendor CSS -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Main CSS -->
+  <!-- ✅ ملف main.css الأصلي (لباقي التنسيقات) -->
   <link href="assets/css/main.css" rel="stylesheet">
+
   <style>
     /* ========================================
-       هيدر جديد - تصميم عصري بالكامل
-    ======================================== */
+       تنسيق الهيدر الجديد فقط (يبقى منفصلاً)
+       ======================================== */
     
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* إخفاء الهيدر القديم مؤقتاً */
+    .header:not(.new-header) {
+      display: none !important;
     }
     
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #000;
-      color: #fff;
-    }
-    
-    /* ===== الهيدر الجديد ===== */
     .new-header {
       position: fixed;
       top: 0;
@@ -58,13 +50,13 @@
       padding: 15px 5%;
       transition: all 0.3s ease;
     }
-    
+
     .new-header.scrolled {
       padding: 10px 5%;
       background: rgba(0, 0, 0, 0.95);
-      border-bottom-color: rgba(0, 242, 254, 0.4);
+      border-bottom-color: rgba(0, 242, 254, 0.5);
     }
-    
+
     .header-container {
       max-width: 1400px;
       margin: 0 auto;
@@ -73,15 +65,15 @@
       justify-content: space-between;
       gap: 20px;
     }
-    
-    /* ===== الشعار ===== */
+
+    /* شعار */
     .logo-area {
       display: flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
     }
-    
+
     .logo-icon {
       width: 45px;
       height: 45px;
@@ -91,44 +83,44 @@
       align-items: center;
       justify-content: center;
       font-size: 24px;
-      font-weight: bold;
+      font-weight: 900;
       color: #000;
     }
-    
+
     .logo-text {
       font-size: 24px;
-      font-weight: 700;
+      font-weight: 800;
       color: #fff;
       letter-spacing: 1px;
     }
-    
+
     .logo-text span {
       color: #00f2fe;
     }
-    
-    /* ===== قائمة سطح المكتب ===== */
+
+    /* قائمة سطح المكتب */
     .desktop-nav {
       display: flex;
       gap: 8px;
     }
-    
+
     .desktop-nav a {
       color: #fff;
       text-decoration: none;
       padding: 10px 20px;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       border-radius: 8px;
       transition: all 0.3s ease;
       position: relative;
     }
-    
+
     .desktop-nav a:hover,
     .desktop-nav a.active {
       color: #00f2fe;
       background: rgba(0, 242, 254, 0.1);
     }
-    
+
     .desktop-nav a.active::after {
       content: '';
       position: absolute;
@@ -140,13 +132,13 @@
       background: #00f2fe;
       border-radius: 2px;
     }
-    
-    /* ===== أيقونات السوشل ميديا (سطح المكتب) ===== */
+
+    /* أيقونات سوشل سطح المكتب */
     .social-icons {
       display: flex;
       gap: 12px;
     }
-    
+
     .social-icons a {
       width: 38px;
       height: 38px;
@@ -160,14 +152,14 @@
       transition: all 0.3s ease;
       text-decoration: none;
     }
-    
+
     .social-icons a:hover {
       background: #00f2fe;
       color: #000;
       transform: translateY(-3px);
     }
-    
-    /* ===== زر الهامبرجر (موبايل فقط) ===== */
+
+    /* زر الهامبرجر (موبايل) */
     .hamburger-btn {
       display: none;
       background: none;
@@ -178,7 +170,7 @@
       position: relative;
       z-index: 1002;
     }
-    
+
     .hamburger-btn span {
       display: block;
       width: 25px;
@@ -188,20 +180,20 @@
       transition: all 0.3s ease;
       border-radius: 2px;
     }
-    
+
     .hamburger-btn.active span:nth-child(1) {
       transform: rotate(45deg) translate(6px, 6px);
     }
-    
+
     .hamburger-btn.active span:nth-child(2) {
       opacity: 0;
     }
-    
+
     .hamburger-btn.active span:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
     }
-    
-    /* ===== القائمة الجانبية (موبايل) ===== */
+
+    /* القائمة الجانبية */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -219,18 +211,18 @@
       box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
       border-left: 1px solid rgba(0, 242, 254, 0.2);
     }
-    
+
     .mobile-menu.open {
       right: 0;
     }
-    
+
     .mobile-nav-links {
       display: flex;
       flex-direction: column;
       gap: 5px;
       flex: 1;
     }
-    
+
     .mobile-nav-links a {
       color: #fff;
       text-decoration: none;
@@ -241,15 +233,15 @@
       transition: all 0.3s ease;
       display: block;
     }
-    
+
     .mobile-nav-links a:hover,
     .mobile-nav-links a.active {
       color: #00f2fe;
       background: rgba(0, 242, 254, 0.1);
       padding-right: 30px;
     }
-    
-    /* أيقونات السوشل داخل القائمة الجانبية */
+
+    /* أيقونات سوشل داخل القائمة الجانبية */
     .mobile-social-icons {
       display: flex;
       justify-content: center;
@@ -258,7 +250,7 @@
       margin-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
+
     .mobile-social-icons a {
       width: 48px;
       height: 48px;
@@ -272,14 +264,14 @@
       transition: all 0.3s ease;
       text-decoration: none;
     }
-    
+
     .mobile-social-icons a:hover {
       background: #00f2fe;
       color: #000;
       transform: translateY(-3px);
     }
-    
-    /* طبقة خلفية عند فتح القائمة */
+
+    /* طبقة خلفية */
     .menu-overlay {
       position: fixed;
       top: 0;
@@ -293,37 +285,33 @@
       visibility: hidden;
       transition: all 0.3s ease;
     }
-    
+
     .menu-overlay.active {
       opacity: 1;
       visibility: visible;
     }
-    
-    /* ===== استجابة للشاشات ===== */
+
+    /* استجابة */
     @media (max-width: 992px) {
       .desktop-nav {
         display: none;
       }
-      
       .social-icons {
         display: none;
       }
-      
       .hamburger-btn {
         display: block;
       }
-      
       .logo-text {
         font-size: 20px;
       }
-      
       .logo-icon {
         width: 38px;
         height: 38px;
         font-size: 20px;
       }
     }
-    
+
     @media (min-width: 993px) {
       .mobile-menu,
       .menu-overlay {
@@ -331,87 +319,56 @@
       }
     }
     
-    /* ===== المساحة للهيدر ===== */
-    .main-content {
+    /* تعديل المسافة العلوية لأن الهيدر الجديد مختلف */
+    .main {
       margin-top: 80px;
-      padding: 40px 5%;
-    }
-    
-    /* مؤقت للمحتوى التجريبي */
-    .hero-section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
-    }
-    
-    .hero-section h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-    
-    .hero-section h1 span {
-      color: #00f2fe;
-    }
-    
-    .hero-section p {
-      font-size: 18px;
-      color: #aaa;
     }
   </style>
 </head>
 <body>
 
-<!-- ===== الهيدر الجديد ===== -->
+<!-- تأثير التوهج -->
+<div class="ambient-glow">
+  <div class="glow-ball" id="glowBall"></div>
+</div>
+
+<!-- ===== الهيدر الجديد (يحل محل القديم) ===== -->
 <header class="new-header" id="newHeader">
   <div class="header-container">
-    
-    <!-- الشعار -->
-    <a href="#" class="logo-area">
+    <a href="#hero" class="logo-area">
       <div class="logo-icon">M</div>
       <div class="logo-text">MOHAMMAD <span>AL-HANANI</span></div>
     </a>
-    
-    <!-- قائمة سطح المكتب -->
     <nav class="desktop-nav">
-      <a href="#home" class="active">الرئيسية</a>
-      <a href="#about">من أنا</a>
-      <a href="#services">خدماتي</a>
-      <a href="#portfolio">أعمالي</a>
-      <a href="#contact">اتصل بي</a>
+      <a href="#hero" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#resume">Resume</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
     </nav>
-    
-    <!-- أيقونات السوشل ميديا (سطح المكتب) -->
     <div class="social-icons">
       <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
       <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
       <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
       <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
     </div>
-    
-    <!-- زر الهامبرجر (موبايل) -->
     <button class="hamburger-btn" id="hamburgerBtn">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
-    
   </div>
 </header>
 
 <!-- القائمة الجانبية (موبايل) -->
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-nav-links">
-    <a href="#home" class="active">الرئيسية</a>
-    <a href="#about">من أنا</a>
-    <a href="#services">خدماتي</a>
-    <a href="#portfolio">أعمالي</a>
-    <a href="#contact">اتصل بي</a>
+    <a href="#hero" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#resume">Resume</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
   </div>
-  
-  <!-- أيقونات السوشل داخل القائمة الجانبية -->
   <div class="mobile-social-icons">
     <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
     <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
@@ -419,214 +376,203 @@
     <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
   </div>
 </div>
-
-<!-- طبقة خلفية عند فتح القائمة -->
 <div class="menu-overlay" id="menuOverlay"></div>
-   <main class="main">
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-      <img src="assets/img/MuhammadAlhnani.webp" alt="Mohammed Al-Hanani" fetchpriority="high">
-      <div class="container text-center fade-up">
-        <h2>Mohammed Al-Hanani</h2>
-        <p>FULL-STACK WEB & MOBILE DEVELOPER</p>
-        <a href="#about" class="btn-scroll" title="Scroll Down"><i class="bi bi-chevron-down"></i></a>
-      </div>
-    </section>
 
-    <!-- باقي الأقسام كما هي ... -->
-    <section id="about" class="about section">
-      <div class="container section-title fade-up">
-        <h2>About Me</h2>
-        <h3>My journey as a Full-Stack Developer</h3>
-      </div>
-      <div class="container fade-up">
-        <div class="row gy-4 justify-content-center">
-          <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="aboutme-photo" alt="Mohammed Al-Hanani" loading="lazy">
-          </div>
-          <div class="col-lg-8 content">
-            <h3>Full-Stack Web Developer</h3>
-            <p class="py-3">Passionate developer with expertise in both front-end and back-end technologies.</p>
-          </div>
+<main class="main">
+  <!-- Hero Section -->
+  <section id="hero" class="hero section dark-background">
+    <img src="assets/img/MuhammadAlhnani.webp" alt="Mohammed Al-Hanani" fetchpriority="high">
+    <div class="container text-center fade-up">
+      <h2>Mohammed Al-Hanani</h2>
+      <p>FULL-STACK WEB & MOBILE DEVELOPER</p>
+      <a href="#about" class="btn-scroll" title="Scroll Down"><i class="bi bi-chevron-down"></i></a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about section">
+    <div class="container section-title fade-up">
+      <h2>About Me</h2>
+      <h3>My journey as a Full-Stack Developer</h3>
+    </div>
+    <div class="container fade-up">
+      <div class="row gy-4 justify-content-center">
+        <div class="col-lg-4">
+          <img src="assets/img/profile-img.jpg" class="aboutme-photo" alt="Mohammed Al-Hanani" loading="lazy">
         </div>
-      </div>
-    </section>
-
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
-      <div class="container section-title fade-up">
-        <span class="description-title">Resume</span>
-        <h2>My Resume</h2>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 fade-up">
-            <h3 class="resume-title">Professional Summary</h3>
-            <div class="resume-item pb-0">
-              <h4>Mohammed Al-Hanani</h4>
-              <p><em>Full Stack Developer specializing in Flutter and Laravel with 2+ years of experience.</em></p>
-            </div>
-          </div>
-          <div class="col-lg-6 fade-up">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Flutter & Firebase Developer</h4>
-              <h5>Jan 2022 - Present</h5>
-              <p>Developed 10+ cross-platform mobile applications using Flutter framework</p>
-            </div>
-          </div>
+        <div class="col-lg-8 content">
+          <h3>Full-Stack Web Developer</h3>
+          <p class="py-3">Passionate developer with expertise in both front-end and back-end technologies.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services section">
-      <div class="container section-title fade-up">
-        <span class="description-title">My Expertise</span>
-        <h2>My Services</h2>
-      </div>
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-xl-3 col-md-6 d-flex fade-up">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-phone"></i></div>
-              <h4>Mobile App Development</h4>
-              <p>Building cross-platform mobile applications using Flutter</p>
-            </div>
-          </div>
-          <div class="col-xl-3 col-md-6 d-flex fade-up">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-laptop"></i></div>
-              <h4>Web Development</h4>
-              <p>Creating responsive web applications using Laravel</p>
-            </div>
-          </div>
-          <div class="col-xl-3 col-md-6 d-flex fade-up">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-database"></i></div>
-              <h4>Backend & APIs</h4>
-              <p>Developing robust backend systems and RESTful APIs</p>
-            </div>
-          </div>
-          <div class="col-xl-3 col-md-6 d-flex fade-up">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-fire"></i></div>
-              <h4>Firebase Solutions</h4>
-              <p>Implementing Firebase services including Authentication</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section">
-      <div class="container section-title fade-up">
-        <span class="description-title">My Work</span>
-        <h2>Portfolio</h2>
-      </div>
-      <div class="container-fluid">
-        <div class="row gy-4 portfolio-container fade-up">
-          <div class="col-xl-4 col-lg-6 portfolio-item">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/LocationTracking.jpg" class="img-fluid" alt="تطبيق تتبع المواقع" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LinkedIn Section -->
-    <div class="linkedin-cta-fullscreen fade-up">
-      <div class="linkedin-cta-content">
-        <div class="linkedin-cta-icon"><i class="bi bi-linkedin"></i></div>
-        <h3>المزيد من المشاريع</h3>
-        <p>لديّ المزيد من المشاريع الاحترافية والإنجازات التي أنجزتها.</p>
-        <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank" class="btn-linkedin">
-          <i class="bi bi-linkedin"></i> تصفح مشاريعي على LinkedIn
-        </a>
       </div>
     </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-      <div class="container section-title fade-up">
-        <span class="description-title">Contact</span>
-        <h2>Contact</h2>
-      </div>
-      <div class="container fade-up">
-        <form action="https://formsubmit.co/muhammadalhnani2004@gmail.com" method="POST" class="php-email-form">
-          <div class="row gy-4">
-            <div class="col-md-6"><input type="text" name="name" class="form-control" placeholder="اسمك" required></div>
-            <div class="col-md-6"><input type="email" class="form-control" name="email" placeholder="بريدك الإلكتروني" required></div>
-            <div class="col-md-12 text-center"><button type="submit">إرسال الرسالة</button></div>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer id="footer" class="footer position-relative dark-background">
+  <!-- Resume Section -->
+  <section id="resume" class="resume section">
+    <div class="container section-title fade-up">
+      <h2>My Resume</h2>
+    </div>
     <div class="container">
-      <h3 class="sitename">Mohammed Al-Hanani</h3>
-      <div class="copyright">&copy; Copyright <strong><span>M.Al-Hanani</span></strong>. All Rights Reserved</div>
+      <div class="row">
+        <div class="col-lg-6 fade-up">
+          <h3 class="resume-title">Professional Summary</h3>
+          <div class="resume-item pb-0">
+            <h4>Mohammed Al-Hanani</h4>
+            <p><em>Full Stack Developer specializing in Flutter and Laravel with 2+ years of experience.</em></p>
+          </div>
+        </div>
+        <div class="col-lg-6 fade-up">
+          <h3 class="resume-title">Professional Experience</h3>
+          <div class="resume-item">
+            <h4>Flutter & Firebase Developer</h4>
+            <h5>Jan 2022 - Present</h5>
+            <p>Developed 10+ cross-platform mobile applications using Flutter framework</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </footer>
+  </section>
 
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <div id="preloader"></div>
+  <!-- Services Section -->
+  <section id="services" class="services section">
+    <div class="container section-title fade-up">
+      <h2>My Services</h2>
+    </div>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-xl-3 col-md-6 d-flex fade-up">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-phone"></i></div>
+            <h4>Mobile App Development</h4>
+            <p>Building cross-platform mobile applications using Flutter</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 d-flex fade-up">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-laptop"></i></div>
+            <h4>Web Development</h4>
+            <p>Creating responsive web applications using Laravel</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 d-flex fade-up">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-database"></i></div>
+            <h4>Backend & APIs</h4>
+            <p>Developing robust backend systems and RESTful APIs</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 d-flex fade-up">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-fire"></i></div>
+            <h4>Firebase Solutions</h4>
+            <p>Implementing Firebase services including Authentication</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio section">
+    <div class="container section-title fade-up">
+      <h2>Portfolio</h2>
+    </div>
+    <div class="container-fluid">
+      <div class="row gy-4 portfolio-container fade-up">
+        <div class="col-xl-4 col-lg-6 portfolio-item">
+          <div class="portfolio-wrap">
+            <img src="assets/img/portfolio/LocationTracking.jpg" class="img-fluid" alt="تطبيق تتبع المواقع" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LinkedIn Section -->
+  <div class="linkedin-cta-fullscreen fade-up">
+    <div class="linkedin-cta-content">
+      <div class="linkedin-cta-icon"><i class="bi bi-linkedin"></i></div>
+      <h3>المزيد من المشاريع</h3>
+      <p>لديّ المزيد من المشاريع الاحترافية والإنجازات التي أنجزتها.</p>
+      <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank" class="btn-linkedin">
+        <i class="bi bi-linkedin"></i> تصفح مشاريعي على LinkedIn
+      </a>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact section">
+    <div class="container section-title fade-up">
+      <h2>Contact</h2>
+    </div>
+    <div class="container fade-up">
+      <form action="https://formsubmit.co/muhammadalhnani2004@gmail.com" method="POST" class="php-email-form">
+        <div class="row gy-4">
+          <div class="col-md-6"><input type="text" name="name" class="form-control" placeholder="اسمك" required></div>
+          <div class="col-md-6"><input type="email" class="form-control" name="email" placeholder="بريدك الإلكتروني" required></div>
+          <div class="col-md-12"><textarea class="form-control" name="message" rows="6" placeholder="رسالتك" required></textarea></div>
+          <div class="col-md-12 text-center"><button type="submit">إرسال الرسالة</button></div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer id="footer" class="footer position-relative dark-background">
+  <div class="container">
+    <h3 class="sitename">Mohammed Al-Hanani</h3>
+    <p>Full-Stack Web Developer | Building digital solutions that matter</p>
+    <div class="social-links d-flex justify-content-center">
+      <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=100072132612398" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+      <a href="https://github.com/WWW-Alhnani-COM" class="github" target="_blank"><i class="bi bi-github"></i></a>
+      <a href="https://wa.me/967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
+    </div>
+    <div class="copyright">&copy; Copyright <strong><span>M.Al-Hanani</span></strong>. All Rights Reserved</div>
+  </div>
+</footer>
+
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<div id="preloader"></div>
 
 <script>
-  // ========================================
-  // سكربت الهيدر الجديد
-  // ========================================
-  
   (function() {
-    // عناصر القائمة
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    // الهامبرجر
+    const hamburger = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    let isMenuOpen = false;
+    const overlay = document.getElementById('menuOverlay');
+    let isOpen = false;
     
-    // دالة فتح/إغلاق القائمة
     function toggleMenu() {
-      isMenuOpen = !isMenuOpen;
-      
-      if (isMenuOpen) {
-        mobileMenu.classList.add('open');
-        menuOverlay.classList.add('active');
-        hamburgerBtn.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      } else {
-        mobileMenu.classList.remove('open');
-        menuOverlay.classList.remove('active');
-        hamburgerBtn.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+      isOpen = !isOpen;
+      mobileMenu.classList.toggle('open', isOpen);
+      overlay.classList.toggle('active', isOpen);
+      hamburger.classList.toggle('active', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     }
     
-    // إضافة المستمعات
-    if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleMenu);
-    if (menuOverlay) menuOverlay.addEventListener('click', toggleMenu);
+    if(hamburger) {
+      hamburger.addEventListener('click', toggleMenu);
+    }
+    if(overlay) {
+      overlay.addEventListener('click', toggleMenu);
+    }
     
-    // إغلاق القائمة عند الضغط على رابط
     document.querySelectorAll('.mobile-nav-links a').forEach(link => {
       link.addEventListener('click', () => {
-        if (isMenuOpen) toggleMenu();
+        if(isOpen) toggleMenu();
       });
     });
-    
-    // تأثير التمرير على الهيدر
+
+    // تأثير الهيدر عند التمرير
     const header = document.getElementById('newHeader');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
+      if(header) {
+        header.classList.toggle('scrolled', window.scrollY > 50);
       }
     });
-    
+
     // تفعيل الرابط النشط
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.desktop-nav a, .mobile-nav-links a');
@@ -636,14 +582,16 @@
       const scrollPos = window.scrollY + 150;
       
       sections.forEach(section => {
-        if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
           current = section.getAttribute('id');
         }
       });
       
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
+        if(link.getAttribute('href') === `#${current}`) {
           link.classList.add('active');
         }
       });
@@ -651,48 +599,75 @@
     
     window.addEventListener('scroll', updateActiveLink);
     window.addEventListener('load', updateActiveLink);
-    
+
     // تمرير سلس
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
+        if(target) {
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
-  })();
-  
-  // إخفاء البريلودر
-  window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    if (preloader) preloader.style.display = 'none';
-  });
-  
-  // زر العودة للأعلى
-  const scrollTop = document.getElementById('scroll-top');
-  if (scrollTop) {
-    scrollTop.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // preloader
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      if(preloader) preloader.style.display = 'none';
     });
-    window.addEventListener('scroll', () => {
-      scrollTop.style.display = window.scrollY > 200 ? 'flex' : 'none';
+
+    // زر العودة للأعلى
+    const scrollTopBtn = document.getElementById('scroll-top');
+    if(scrollTopBtn) {
+      window.addEventListener('scroll', () => {
+        scrollTopBtn.style.display = window.scrollY > 200 ? 'flex' : 'none';
+      });
+      scrollTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // fade-up animation
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    
+    document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+    // كرة التوهج
+    const glowBall = document.getElementById('glowBall');
+    let mouseX = 0, mouseY = 0, ballX = 0, ballY = 0;
+    
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
-  }
-  
-  // fade-up animation
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        fadeObserver.unobserve(entry.target);
+    
+    window.addEventListener('touchmove', (e) => {
+      if(e.touches.length) {
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
       }
     });
-  }, { threshold: 0.15 });
-  
-  document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+    
+    function animateGlow() {
+      ballX += (mouseX - ballX) * 0.1;
+      ballY += (mouseY - ballY) * 0.1;
+      if(glowBall) {
+        glowBall.style.transform = `translate(${ballX}px, ${ballY}px) translate(-50%, -50%)`;
+      }
+      requestAnimationFrame(animateGlow);
+    }
+    
+    animateGlow();
+  })();
 </script>
 </body>
 </html>
