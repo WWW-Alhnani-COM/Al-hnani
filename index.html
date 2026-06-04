@@ -38,43 +38,10 @@
     /* =========================================
        الأنماط الأساسية والمحسّنة
     ========================================= */
-    .models-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-    }
-    .model-item {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 50%;
-      height: 50%;
-      opacity: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: auto;
-      perspective: 1000px;
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      transform: translate(-50%, -50%) scale(0.6);
-    }
-    .model-item.visible {
-      opacity: 0.8;
-      transform: translate(-50%, -50%) scale(0.8);
-    }
-    .model-item iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
     section {
       min-height: 100vh;
       background: transparent !important;
-      content-visibility: auto; /* ✅ تأجيل رسم الأقسام غير المرئية */
+      content-visibility: auto;
       contain-intrinsic-size: 500px;
     }
 
@@ -217,30 +184,70 @@
       .linkedin-cta-icon { font-size: 3.5rem; }
     }
     .logo {
-  margin-right: 0 !important;
-  margin-left: 0 !important;
-}
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
+    
     /* ==============================================
-   تثبيت لون زر الهامبرجر وجعله واضحاً دائماً
-   ============================================== */
-.mobile-nav-toggle {
-  color: #00f2fe !important;
-  background: rgba(0, 242, 254, 0.2) !important;
-  border-radius: 10px !important;
-  padding: 8px 12px !important;
-  font-size: 28px !important;
-  transition: all 0.3s ease !important;
-}
+       تثبيت لون زر الهامبرجر وجعله واضحاً دائماً
+       ============================================== */
+    .mobile-nav-toggle {
+      color: #00f2fe !important;
+      background: rgba(0, 242, 254, 0.2) !important;
+      border-radius: 10px !important;
+      padding: 8px 12px !important;
+      font-size: 28px !important;
+      transition: all 0.3s ease !important;
+    }
 
-.mobile-nav-toggle:hover {
-  background: rgba(0, 242, 254, 0.35) !important;
-  transform: scale(1.05);
-}
+    .mobile-nav-toggle:hover {
+      background: rgba(0, 242, 254, 0.35) !important;
+      transform: scale(1.05);
+    }
 
-/* عند فتح القائمة */
-.mobile-nav-active .mobile-nav-toggle {
-  background: rgba(0, 242, 254, 0.3) !important;
-}
+    /* عند فتح القائمة */
+    .mobile-nav-active .mobile-nav-toggle {
+      background: rgba(0, 242, 254, 0.3) !important;
+    }
+    
+    /* ==============================================
+       إخفاء أيقونات الهيدر في الموبايل وإظهار أيقونات القائمة
+       ============================================== */
+    @media (max-width: 991px) {
+      .header .header-social-links,
+      .header-social-links {
+        display: none !important;
+      }
+      
+      .mobile-social-links {
+        display: flex !important;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px 0;
+        margin-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .mobile-social-links a {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        font-size: 20px;
+        text-decoration: none;
+      }
+      
+      .mobile-social-links a:hover {
+        background: #00f2fe;
+        color: #000;
+        transform: translateY(-3px);
+      }
+    }
   </style>
 </head>
 
@@ -250,56 +257,40 @@
     <div class="glow-ball" id="glowBall"></div>
   </div>
 
-  <!-- خلفية النماذج (سيتم تحميلها عند الحاجة) -->
-  <div class="models-background" id="trigger-area">
-    <div class="model-item" id="model-flutter" data-model>
-      <iframe title="Flutter" data-src="https://sketchfab.com/models/c3a57c41d5c8403899a8f140a47b88ce/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0" loading="lazy"></iframe>
-    </div>
-    <div class="model-item" id="model-vue" data-model>
-      <iframe title="Vue.js" data-src="https://sketchfab.com/models/5dd11e7c8ee448bb8dcf765817074b22/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0" loading="lazy"></iframe>
-    </div>
-    <div class="model-item" id="model-ts" data-model>
-      <iframe title="TypeScript" data-src="https://sketchfab.com/models/84af2099cb8542549fb56eae0dbabdb5/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0" loading="lazy"></iframe>
-    </div>
-    <div class="model-item" id="model-github" data-model>
-      <iframe title="GitHub" data-src="https://sketchfab.com/models/ad77c76608ad45f8a109662cd25d6539/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0" loading="lazy"></iframe>
-    </div>
-  </div>
-
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
-       <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/Logo.png" alt="Mohammed AL-Hnani" width="40" height="40">
         <h1 class="sitename">MOHAMMAD</h1>
       </a>
 
-     
-     <nav id="navmenu" class="navmenu">
-  <ul>
-    <li><a href="#hero" class="active">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#resume">Resume</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  
-  <!-- أيقونات السوشل ميديا في أسفل القائمة الجانبية -->
-  <div class="mobile-social-links">
-    <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
-    <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
-    <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
-    <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
-  </div>
-</nav>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <!-- أيقونات السوشل ميديا في أسفل القائمة الجانبية -->
+        <div class="mobile-social-links">
+          <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100072132612398" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="https://wa.me/+967711447801" target="_blank"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://github.com/WWW-Alhnani-COM" target="_blank"><i class="bi bi-github"></i></a>
+        </div>
+      </nav>
+      
       <div class="header-social-links d-none d-xl-flex">
         <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" class="linkedin" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank"><i class="bi bi-linkedin"></i></a>
         <a href="https://www.facebook.com/profile.php?id=100072132612398" class="facebook" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><i class="bi bi-facebook"></i></a>
         <a href="https://wa.me/+967711447801" class="whatsapp" aria-label="WhatsApp" rel="noopener noreferrer" target="_blank"><i class="bi bi-whatsapp"></i></a>
         <a href="https://github.com/WWW-Alhnani-COM" class="github" aria-label="GitHub" rel="noopener noreferrer" target="_blank"><i class="bi bi-github"></i></a>
       </div>
-                    <i class="mobile-nav-toggle d-xl-none bi bi-list" id="mobileNavToggle"></i>
-
+      
+      <i class="mobile-nav-toggle d-xl-none bi bi-list" id="mobileNavToggle"></i>
     </div>
   </header>
 
@@ -323,7 +314,7 @@
       <div class="container fade-up">
         <div class="row gy-4 justify-content-center">
           <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="aboutme-photo" alt="Mohammed Al-Hanani - مطور فول ستاك يمني متخصص في Laravel و Flutter" width="400" height="400" loading="lazy">
+            <img src="assets/img/profile-img.jpg" class="aboutme-photo" alt="Mohammed Al-Hanani" width="400" height="400" loading="lazy">
           </div>
           <div class="col-lg-8 content">
             <h3>Full-Stack Web Developer</h3>
@@ -365,32 +356,12 @@
             <h3 class="resume-title">Professional Summary</h3>
             <div class="resume-item pb-0">
               <h4>Mohammed Al-Hanani</h4>
-              <p><em>Full Stack Developer specializing in Flutter and Laravel with 2+ years of experience building cross-platform mobile applications and web solutions. Expert in Firebase integration and UI/UX design principles.</em></p>
+              <p><em>Full Stack Developer specializing in Flutter and Laravel with 2+ years of experience.</em></p>
               <ul>
                 <li>Sanaa, Yemen</li>
                 <li>+967 711 447 801</li>
                 <li>mohammadalhnani2004@gmail.com</li>
                 <li>GitHub: <a href="https://github.com/WWW-Alhnani-COM" target="_blank">MohammedAlHanani</a></li>
-              </ul>
-            </div>
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Bachelor of Information Technology</h4>
-              <h5>2020 - 2024</h5>
-              <p><em>GIC College, Sanaa, Yemen</em></p>
-              <ul>
-                <li>Graduation project awarded first place at college level</li>
-                <li>Specialized in software development and database systems</li>
-              </ul>
-            </div>
-            <h3 class="resume-title">Core Competencies</h3>
-            <div class="resume-item">
-              <ul>
-                <li><strong>Mobile Development:</strong> Flutter, Dart, Firebase, Google Maps API</li>
-                <li><strong>Web Development:</strong> Laravel, PHP, HTML5, CSS3, JavaScript</li>
-                <li><strong>Databases:</strong> Firebase Firestore, MySQL, SQL Server</li>
-                <li><strong>UI/UX Design:</strong> Wireframing, prototyping, user-centered design</li>
-                <li><strong>Version Control:</strong> Git, GitHub, collaborative development</li>
               </ul>
             </div>
           </div>
@@ -399,36 +370,7 @@
             <div class="resume-item">
               <h4>Flutter & Firebase Developer</h4>
               <h5>Jan 2022 - Present</h5>
-              <p><em>[Company Name or Self-Employed], [Location]</em></p>
-              <ul>
-                <li>Developed 10+ cross-platform mobile applications using Flutter framework</li>
-                <li>Implemented Firebase services including Authentication, Firestore, and Cloud Functions</li>
-                <li>Designed intuitive UI/UX interfaces with focus on usability principles</li>
-                <li>Integrated RESTful APIs and third-party services like Google Maps</li>
-                <li>Published apps on both Google Play Store and Apple App Store</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Laravel Web Developer</h4>
-              <h5>2022 - Present</h5>
-              <p><em>[Company Name or Freelance Projects]</em></p>
-              <ul>
-                <li>Built enterprise web applications using Laravel PHP framework</li>
-                <li>Developed admin dashboards with CRUD functionality</li>
-                <li>Created RESTful APIs for mobile application integration</li>
-                <li>Optimized database performance for high-traffic applications</li>
-              </ul>
-            </div>
-            <h3 class="resume-title">Certifications</h3>
-            <div class="resume-item">
-              <h4>Advanced Laravel Development</h4>
-              <h5>2023</h5>
-              <p>Mastered API development, database management, and performance optimization</p>
-            </div>
-            <div class="resume-item">
-              <h4>Flutter & Firebase Integration</h4>
-              <h5>2022</h5>
-              <p>Practical training in building complete mobile solutions with Firebase backend</p>
+              <p>Developed 10+ cross-platform mobile applications using Flutter framework</p>
             </div>
           </div>
         </div>
@@ -440,7 +382,6 @@
       <div class="container section-title fade-up">
         <span class="description-title">My Expertise</span>
         <h2>My Services</h2>
-        <h3>Comprehensive solutions tailored to your digital needs</h3>
       </div>
       <div class="container">
         <div class="row gy-4">
@@ -448,37 +389,36 @@
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-phone"></i></div>
               <h4>Mobile App Development</h4>
-              <h5>Building cross-platform mobile applications using Flutter with Firebase integration for authentication, databases, and cloud functions.</h5>
+              <p>Building cross-platform mobile applications using Flutter</p>
             </div>
           </div>
           <div class="col-xl-3 col-md-6 d-flex fade-up">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-laptop"></i></div>
               <h4>Web Development</h4>
-              <p>Creating responsive web applications using Laravel, PHP, HTML, CSS, and JavaScript with SQL/NoSQL databases.</p>
+              <p>Creating responsive web applications using Laravel</p>
             </div>
           </div>
           <div class="col-xl-3 col-md-6 d-flex fade-up">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-database"></i></div>
               <h4>Backend & APIs</h4>
-              <h5>Developing robust backend systems and RESTful APIs using Laravel with secure authentication and database management.</h5>
+              <p>Developing robust backend systems and RESTful APIs</p>
             </div>
           </div>
           <div class="col-xl-3 col-md-6 d-flex fade-up">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-fire"></i></div>
               <h4>Firebase Solutions</h4>
-              <h5>Implementing Firebase services including Authentication, Firestore, Realtime Database, Cloud Functions, and Hosting.</h5>
+              <p>Implementing Firebase services including Authentication</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Testimonials Section (سيتم تحميل Swiper عند الحاجة) -->
+    <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section dark-background">
-      <!-- <img src="assets/img/MuhammadAlhnani.jpg" class="testimonials-bg" alt="" loading="lazy" width="1920" height="1080"> -->
       <div class="container fade-up">
         <div class="swiper init-swiper" id="testimonialsSwiper">
           <div class="swiper-wrapper">
@@ -488,7 +428,7 @@
                 <h3>د. فرحان الجابري</h3>
                 <h4>عميد كلية GIC</h4>
                 <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                <p><i class="bi bi-quote quote-icon-left"></i> محمد الحناني كان من أبرز طلاب الكلية تميزاً في مجال تطوير البرمجيات. تميز بمشروع تخرجه الذي حصل على المركز الأول على مستوى الكلية، حيث طور نظاماً متكاملاً لإدارة الأساطيل باستخدام أحدث التقنيات. <i class="bi bi-quote quote-icon-right"></i></p>
+                <p><i class="bi bi-quote quote-icon-left"></i> محمد الحناني كان من أبرز طلاب الكلية تميزاً في مجال تطوير البرمجيات. <i class="bi bi-quote quote-icon-right"></i></p>
               </div>
             </div>
             <div class="swiper-slide">
@@ -497,7 +437,7 @@
                 <h3>م. مهند المشرقي</h3>
                 <h4>خبير أنظمة معلومات - عضو لجنة المناقشة</h4>
                 <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                <p><i class="bi bi-quote quote-icon-left"></i> خلال تقييمنا لمشروع محمد الحناني "نظام إدارة الأساطيل"، لاحظنا تميزاً غير عادي في جودة الكود والتصميم. <i class="bi bi-quote quote-icon-right"></i></p>
+                <p><i class="bi bi-quote quote-icon-left"></i> خلال تقييمنا لمشروع محمد الحناني، لاحظنا تميزاً غير عادي في جودة الكود والتصميم. <i class="bi bi-quote quote-icon-right"></i></p>
               </div>
             </div>
           </div>
@@ -506,12 +446,11 @@
       </div>
     </section>
 
-    <!-- Portfolio Section (سيتم تحميل GLightbox عند الحاجة) -->
+    <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section">
       <div class="container section-title fade-up">
         <span class="description-title">My Work</span>
         <h2>Portfolio</h2>
-        <p>A showcase of my professional projects and development work</p>
       </div>
       <div class="container-fluid">
         <div class="row gy-4 portfolio-container fade-up">
@@ -550,7 +489,7 @@
     <div class="linkedin-cta-fullscreen fade-up">
       <div class="linkedin-cta-content">
         <div class="linkedin-cta-icon"><i class="bi bi-linkedin"></i></div>
-        <h3> المزيد من المشاريع</h3>
+        <h3>المزيد من المشاريع</h3>
         <p>لديّ المزيد من المشاريع الاحترافية والإنجازات التي أنجزتها.<br>ادعوك لزيارة ملفي الشخصي على LinkedIn لمشاهدة مجموعة كاملة من أعمالي وخبراتي.</p>
         <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" target="_blank" class="btn-linkedin">
           <i class="bi bi-linkedin"></i> تصفح مشاريعي على LinkedIn <i class="bi bi-arrow-right"></i>
@@ -599,114 +538,94 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
 
-  <!-- ✅ التحسين: إزالة جميع السكربتات الثقيلة (GSAP, Bootstrap JS, AOS, Isotope) والتحميل الديناميكي -->
-  <script defer src="assets/vendor/php-email-form/validate.js"></script>
-  <!-- سيتم تحميل Swiper و GLightbox عند الحاجة -->
-
- <script>
-  // ========================================
-  // سكربت موحد لقائمة الهامبرجر
-  // ========================================
-  
-  (function() {
-    const toggleBtn = document.getElementById('mobileNavToggle');
-    const navmenu = document.getElementById('navmenu');
-    const body = document.body;
-    
-    if (!toggleBtn) {
-      console.log('زر الهامبرجر غير موجود');
-      return;
-    }
-    
-    // دالة فتح/إغلاق القائمة
-    function toggleMobileMenu() {
-      body.classList.toggle('mobile-nav-active');
+  <script>
+    // ========================================
+    // سكربت موحد لقائمة الهامبرجر
+    // ========================================
+    (function() {
+      const toggleBtn = document.getElementById('mobileNavToggle');
+      const navmenu = document.getElementById('navmenu');
+      const body = document.body;
       
-      // تغيير أيقونة الزر
-      if (body.classList.contains('mobile-nav-active')) {
-        toggleBtn.classList.remove('bi-list');
-        toggleBtn.classList.add('bi-x');
-        console.log('القائمة مفتوحة');
-      } else {
-        toggleBtn.classList.remove('bi-x');
-        toggleBtn.classList.add('bi-list');
-        console.log('القائمة مغلقة');
-      }
-    }
-    
-    // إضافة حدث النقر للزر
-    toggleBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      toggleMobileMenu();
-    });
-    
-    // إغلاق القائمة عند الضغط على أي رابط في القائمة
-    const navLinks = document.querySelectorAll('.navmenu a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
+      if (!toggleBtn) return;
+      
+      function toggleMobileMenu() {
+        body.classList.toggle('mobile-nav-active');
+        
         if (body.classList.contains('mobile-nav-active')) {
-          body.classList.remove('mobile-nav-active');
+          toggleBtn.classList.remove('bi-list');
+          toggleBtn.classList.add('bi-x');
+        } else {
           toggleBtn.classList.remove('bi-x');
           toggleBtn.classList.add('bi-list');
+        }
+      }
+      
+      toggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMobileMenu();
+      });
+      
+      document.querySelectorAll('.navmenu a').forEach(link => {
+        link.addEventListener('click', function() {
+          if (body.classList.contains('mobile-nav-active')) {
+            body.classList.remove('mobile-nav-active');
+            toggleBtn.classList.remove('bi-x');
+            toggleBtn.classList.add('bi-list');
+          }
+        });
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (body.classList.contains('mobile-nav-active')) {
+          if (!navmenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+            body.classList.remove('mobile-nav-active');
+            toggleBtn.classList.remove('bi-x');
+            toggleBtn.classList.add('bi-list');
+          }
         }
       });
-    });
-    
-    // إغلاق القائمة عند الضغط خارجها
-    document.addEventListener('click', function(e) {
-      if (body.classList.contains('mobile-nav-active')) {
-        if (!navmenu.contains(e.target) && !toggleBtn.contains(e.target)) {
-          body.classList.remove('mobile-nav-active');
-          toggleBtn.classList.remove('bi-x');
-          toggleBtn.classList.add('bi-list');
-        }
+    })();
+
+    // التوهج المحيط
+    (function() {
+      const glowBall = document.getElementById('glowBall');
+      if (!glowBall) return;
+      let mouseX = 0, mouseY = 0, ballX = 0, ballY = 0;
+      function updateGlowPosition(e) {
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        mouseX = clientX; mouseY = clientY;
       }
+      function animateGlow() {
+        ballX += (mouseX - ballX) * 0.15;
+        ballY += (mouseY - ballY) * 0.15;
+        glowBall.style.transform = `translate(${ballX}px, ${ballY}px) translate(-50%, -50%)`;
+        requestAnimationFrame(animateGlow);
+      }
+      window.addEventListener('mousemove', updateGlowPosition);
+      window.addEventListener('touchmove', updateGlowPosition, { passive: false });
+      animateGlow();
+    })();
+
+    // زر العودة للأعلى وإخفاء البريلودر
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      if (preloader) preloader.style.display = 'none';
     });
     
-    console.log('سكربت الهامبرجر يعمل ✅');
-  })();
-
-  // ========== باقي السكربتات الأخرى ==========
-  
-  // التوهج المحيط
-  (function() {
-    const glowBall = document.getElementById('glowBall');
-    if (!glowBall) return;
-    let mouseX = 0, mouseY = 0, ballX = 0, ballY = 0;
-    function updateGlowPosition(e) {
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      mouseX = clientX; mouseY = clientY;
+    const scrollTop = document.getElementById('scroll-top');
+    if (scrollTop) {
+      scrollTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      window.addEventListener('scroll', function() {
+        scrollTop.style.display = window.scrollY > 200 ? 'flex' : 'none';
+      });
     }
-    function animateGlow() {
-      ballX += (mouseX - ballX) * 0.15;
-      ballY += (mouseY - ballY) * 0.15;
-      glowBall.style.transform = `translate(${ballX}px, ${ballY}px) translate(-50%, -50%)`;
-      requestAnimationFrame(animateGlow);
-    }
-    window.addEventListener('mousemove', updateGlowPosition);
-    window.addEventListener('touchmove', updateGlowPosition, { passive: false });
-    animateGlow();
-  })();
 
-  // زر العودة للأعلى وإخفاء البريلودر
-  window.addEventListener('load', function() {
-    const preloader = document.getElementById('preloader');
-    if (preloader) preloader.style.display = 'none';
-  });
-  
-  const scrollTop = document.getElementById('scroll-top');
-  if (scrollTop) {
-    scrollTop.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    window.addEventListener('scroll', function() {
-      scrollTop.style.display = window.scrollY > 200 ? 'flex' : 'none';
-    });
-  }
-
-    // ========== 4. استبدال AOS: Intersection Observer للـ fade-up ==========
+    // fade-up animation
     const fadeEls = document.querySelectorAll('.fade-up');
     const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -717,160 +636,6 @@
       });
     }, { threshold: 0.2 });
     fadeEls.forEach(el => fadeObserver.observe(el));
-
-    // ========== 5. تحميل نماذج Sketchfab عند الاقتراب ==========
-    const modelObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const iframe = entry.target.querySelector('iframe');
-          if (iframe && iframe.dataset.src) {
-            iframe.src = iframe.dataset.src;
-            iframe.removeAttribute('data-src');
-          }
-          modelObserver.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '200px' });
-    document.querySelectorAll('[data-model]').forEach(model => modelObserver.observe(model));
-
-    // ========== 6. تفعيل النموذج المقابل للقسم المرئي (بديل GSAP) ==========
-    const sections = [
-      { id: 'hero', model: 'model-flutter' },
-      { id: 'about', model: 'model-vue' },
-      { id: 'resume', model: 'model-ts' },
-      { id: 'portfolio', model: 'model-github' }
-    ];
-    const models = {};
-    sections.forEach(s => { models[s.model] = document.getElementById(s.model); });
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.id;
-          const activeModel = sections.find(s => s.id === sectionId);
-          // إظهار النموذج المناسب وإخفاء الآخرين
-          Object.keys(models).forEach(key => {
-            if (activeModel && key === activeModel.model) {
-              models[key].classList.add('visible');
-            } else {
-              models[key].classList.remove('visible');
-            }
-          });
-        }
-      });
-    }, { threshold: 0.6 });
-    sections.forEach(s => {
-      const el = document.getElementById(s.id);
-      if (el) sectionObserver.observe(el);
-    });
-
-    // ========== 7. تأثير متابعة الماوس للنماذج (بديل GSAP خفيف) ==========
-    let currentModel = null;
-    function getVisibleModel() {
-      for (const key in models) {
-        if (models[key].classList.contains('visible')) return models[key];
-      }
-      return null;
-    }
-    function handleModelInteraction(e) {
-      if (!currentModel) return;
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      const xPct = (clientX / window.innerWidth - 0.5) * 100;
-      const yPct = (clientY / window.innerHeight - 0.5) * 100;
-      currentModel.style.transform = `translate(${xPct}px, ${yPct}px) scale(0.8)`;
-    }
-    window.addEventListener('mousemove', (e) => {
-      currentModel = getVisibleModel();
-      handleModelInteraction(e);
-    });
-    window.addEventListener('touchmove', (e) => {
-      currentModel = getVisibleModel();
-      handleModelInteraction(e);
-    }, { passive: false });
-    window.addEventListener('mouseleave', () => {
-      if (currentModel) currentModel.style.transform = 'translate(-50%, -50%) scale(0.8)';
-    });
-
-    // ========== 8. تحميل Swiper عند الحاجة ==========
-    const swiperObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        // تحميل CSS + JS ديناميكيًا
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'assets/vendor/swiper/swiper-bundle.min.css';
-        document.head.appendChild(link);
-        const script = document.createElement('script');
-        script.src = 'assets/vendor/swiper/swiper-bundle.min.js';
-        script.onload = function() {
-          new Swiper('#testimonialsSwiper', {
-            loop: true,
-            speed: 600,
-            autoplay: { delay: 5000 },
-            slidesPerView: 'auto',
-            pagination: { el: '.swiper-pagination', type: 'bullets', clickable: true }
-          });
-        };
-        document.body.appendChild(script);
-        swiperObserver.disconnect();
-      }
-    }, { threshold: 0.1 });
-    swiperObserver.observe(document.getElementById('testimonials'));
-
-    // ========== 9. تحميل GLightbox للمعرض ==========
-    const lightboxObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'assets/vendor/glightbox/css/glightbox.min.css';
-        document.head.appendChild(link);
-        const script = document.createElement('script');
-        script.src = 'assets/vendor/glightbox/js/glightbox.min.js';
-        script.onload = function() {
-          const lightbox = GLightbox({ selector: '.portfolio-lightbox' });
-        };
-        document.body.appendChild(script);
-        lightboxObserver.disconnect();
-      }
-    }, { threshold: 0.1 });
-    lightboxObserver.observe(document.getElementById('portfolio'));
-
-    // ========== 10. تحميل Three.js عند دخول الهيرو (اختياري) ==========
-    const heroObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        import('https://unpkg.com/three@0.160.0/build/three.module.js').then(THREE => {
-          const section = document.querySelector('#hero');
-          const canvas = document.createElement('canvas');
-          canvas.id = 'hero-canvas';
-          canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;';
-          section.appendChild(canvas);
-          const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-          renderer.setSize(window.innerWidth, window.innerHeight);
-          const scene = new THREE.Scene();
-          const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-          camera.position.z = 1;
-          const starsGeo = new THREE.BufferGeometry();
-          const count = 1500; // قللنا العدد للأداء
-          const pos = new Float32Array(count * 3);
-          for (let i = 0; i < count * 3; i++) pos[i] = (Math.random() - 0.5) * 5;
-          starsGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-          const stars = new THREE.Points(starsGeo, new THREE.PointsMaterial({ size: 0.005, color: '#ffffff' }));
-          scene.add(stars);
-          function animate() {
-            requestAnimationFrame(animate);
-            stars.rotation.y += 0.0005;
-            renderer.render(scene, camera);
-          }
-          animate();
-          window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-          });
-        });
-        heroObserver.disconnect();
-      }
-    }, { threshold: 0.1 });
-    heroObserver.observe(document.getElementById('hero'));
   </script>
 </body>
 </html>
