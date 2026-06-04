@@ -143,14 +143,14 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: rgba(0, 0, 0, 0.6);
+  --background-color: rgba(0, 0, 0, 0.3);
   --default-color: #ffffff;
   --heading-color: #ffffff;
   color: var(--default-color);
   background-color: var(--background-color);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(0, 242, 254, 0.1);
   padding: 20px 0;
   transition: all 0.5s;
   z-index: 997;
@@ -221,13 +221,7 @@ h6 {
   transform: translateY(-2px);
 }
 
-/* تحسين عرض القائمة الموبايل */
-@media (max-width: 1199px) {
- 
-    .mobile-nav-active .navmenu ul {
-    display: flex;
-  }
-}
+
 
 .header .header-social-links a i {
   line-height: 0px;
@@ -248,7 +242,7 @@ h6 {
 }
 
 .scrolled .header {
-  --background-color: rgba(0, 0, 0, 0.85);
+  --background-color: rgba(0, 0, 0, 0.6);
   box-shadow: 0px 0 18px rgba(0, 0, 0, 0.3);
   padding: 12px 0;
 }
@@ -368,118 +362,6 @@ h6 {
   }
 }
 
-/* Navmenu - Mobile */
-@media (max-width: 1199px) {
-  .mobile-nav-toggle {
-    color: var(--nav-color);
-    font-size: 28px;
-    line-height: 0;
-    margin-right: 10px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-
-  .navmenu {
-    padding: 0;
-    z-index: 9997;
-  }
-
-
-  .navmenu a,
-  .navmenu a:focus {
-    color: var(--nav-dropdown-color);
-    padding: 10px 20px;
-    font-family: var(--nav-font);
-    font-size: 17px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    white-space: nowrap;
-    transition: 0.3s;
-  }
-
-  .navmenu a i,
-  .navmenu a:focus i {
-    font-size: 12px;
-    line-height: 0;
-    margin-left: 5px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: 0.3s;
-    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
-  }
-
-  .navmenu a i:hover,
-  .navmenu a:focus i:hover {
-    background-color: var(--accent-color);
-    color: var(--contrast-color);
-  }
-
-  .navmenu a:hover,
-  .navmenu .active,
-  .navmenu .active:focus {
-    color: var(--nav-dropdown-hover-color);
-  }
-
-  .navmenu .active i,
-  .navmenu .active:focus i {
-    background-color: var(--accent-color);
-    color: var(--contrast-color);
-    transform: rotate(180deg);
-  }
-
-  .navmenu .dropdown ul {
-    position: static;
-    display: none;
-    z-index: 99;
-    padding: 10px 0;
-    margin: 10px 20px;
-    background-color: var(--nav-dropdown-background-color);
-    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-    box-shadow: none;
-    transition: all 0.5s ease-in-out;
-  }
-
-  .navmenu .dropdown ul ul {
-    background-color: rgba(33, 37, 41, 0.1);
-  }
-
-  .navmenu .dropdown>.dropdown-active {
-    display: block;
-    background-color: rgba(33, 37, 41, 0.03);
-  }
-
-  .mobile-nav-active {
-    overflow: hidden;
-  }
-
-  .mobile-nav-active .mobile-nav-toggle {
-    color: #fff;
-    position: absolute;
-    font-size: 32px;
-    top: 15px;
-    right: 15px;
-    margin-right: 0;
-    z-index: 9999;
-  }
-
-  .mobile-nav-active .navmenu {
-    position: fixed;
-    overflow: hidden;
-    inset: 0;
-    background: rgba(33, 37, 41, 0.8);
-    transition: 0.3s;
-  }
-
-  .mobile-nav-active .navmenu>ul {
-    display: block;
-  }
-}
 
 /*--------------------------------------------------------------
 # Global Footer
@@ -1803,25 +1685,26 @@ section,
   font-size: 18px;
   opacity: 0.6;
 }
+
 /*--------------------------------------------------------------
 # Navigation Menu - Mobile
 --------------------------------------------------------------*/
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
-    color: var(--accent-color); /* تغيير اللون إلى لون التمييز */
+    color: var(--accent-color);
     font-size: 28px;
     line-height: 0;
     margin-right: 10px;
     cursor: pointer;
     transition: color 0.3s;
-    background: rgba(255, 187, 39, 0.1); /* خلفية شبه شفافة */
+    background: rgba(0, 242, 254, 0.1);
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 1px solid rgba(255, 187, 39, 0.3);
+    border: 1px solid rgba(0, 242, 254, 0.3);
   }
 
   .mobile-nav-toggle:hover {
@@ -1829,7 +1712,7 @@ section,
     background: var(--accent-color);
   }
 
-.navmenu ul {
+  .navmenu ul {
     display: none;
     flex-direction: column;
     background-color: #181818;
@@ -1844,7 +1727,7 @@ section,
     transition: 0.3s;
     z-index: 9998;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-}
+  }
 
   .navmenu a,
   .navmenu a:focus {
@@ -1853,6 +1736,10 @@ section,
     font-size: 16px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
   }
 
   .navmenu a:hover,
@@ -1864,7 +1751,7 @@ section,
 
   .navmenu a i,
   .navmenu a:focus i {
-    background-color: rgba(255, 187, 39, 0.1);
+    background-color: rgba(0, 242, 254, 0.1);
     color: var(--accent-color);
   }
 
@@ -1875,14 +1762,31 @@ section,
     color: #fff;
   }
 
+  .mobile-nav-active {
+    overflow: hidden;
+  }
+
   .mobile-nav-active .navmenu {
-    background: rgba(0, 0, 0, 0.9); /* خلفية شبه معتمة عند تفعيل القائمة */
+    position: fixed;
+    overflow: hidden;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    transition: 0.3s;
+    z-index: 9997;
+  }
+
+  .mobile-nav-active .navmenu ul {
+    display: flex;
   }
 
   .mobile-nav-active .mobile-nav-toggle {
     color: #fff;
     background: var(--accent-color);
     border-color: var(--accent-color);
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
   }
 }
 /*--------------------------------------------------------------
