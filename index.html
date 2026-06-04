@@ -22,7 +22,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"></noscript>
 
   <!-- ✅ تحميل مسبق لصورة الـ Hero (LCP) -->
-  <link rel="preload" as="image" href="assets/img/MuhammadAlhnani.webp" fetchpriority="high">
+  <!-- <link rel="preload" as="image" href="assets/img/MuhammadAlhnani.webp" fetchpriority="high"> -->
 
   <!-- Vendor CSS (تأجيل الملفات غير الحرجة) -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
@@ -56,18 +56,40 @@
       pointer-events: none;
       will-change: transform;
     }
-    .glow-ball {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 1000px;
-      height: 1000px;
-      background: radial-gradient(circle, rgba(0, 242, 254, 0.55) 0%, rgba(127, 0, 255, 0.35) 50%, rgba(0, 0, 0, 0) 85%);
-      border-radius: 50%;
-      filter: blur(130px);
-      transform: translate3d(-50%, -50%, 0);
-      opacity: 0.85;
-    }
+.glow-ball{
+    position:absolute;
+    top:0;
+    left:0;
+    width:1000px;
+    height:1000px;
+    border-radius:50%;
+    overflow:hidden;
+}
+    .glow-ball::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(0,242,254,.35) 0%,
+        rgba(127,0,255,.25) 35%,
+        rgba(255,0,255,.15) 60%,
+        transparent 85%
+      );
+
+    filter:blur(60px);
+}
+ #galaxyCanvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    pointer-events:none;
+}
 
     /* ✅ استبدال AOS بأنيميشن CSS خفيف */
     .fade-up {
@@ -254,8 +276,10 @@
 <body class="index-page">
   <!-- تأثير التوهج -->
   <div class="ambient-glow">
-    <div class="glow-ball" id="glowBall"></div>
-  </div>
+    <div class="glow-ball" id="glowBall">
+        <canvas id="galaxyCanvas"></canvas>
+    </div>
+</div>
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
@@ -543,95 +567,220 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
 
-  <script>
-    // ========================================
-    // سكربت موحد لقائمة الهامبرجر
-    // ========================================
-    (function() {
-      const toggleBtn = document.getElementById('mobileNavToggle');
-      const navmenu = document.getElementById('navmenu');
-      const body = document.body;
-      
-      if (!toggleBtn) return;
-      
-      function toggleMobileMenu() {
-        body.classList.toggle('mobile-nav-active');
-        
+<script>
+(function () {
+  "use strict";
+
+  /* ==============================
+     Mobile Navigation
+  ============================== */
+  const toggleBtn = document.getElementById('mobileNavToggle');
+  const navmenu = document.getElementById('navmenu');
+  const body = document.body;
+
+  if (toggleBtn && navmenu) {
+    function toggleMobileMenu() {
+      body.classList.toggle('mobile-nav-active');
+
+      if (body.classList.contains('mobile-nav-active')) {
+        toggleBtn.classList.remove('bi-list');
+        toggleBtn.classList.add('bi-x');
+      } else {
+        toggleBtn.classList.remove('bi-x');
+        toggleBtn.classList.add('bi-list');
+      }
+    }
+
+    toggleBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleMobileMenu();
+    });
+
+    document.querySelectorAll('.navmenu a').forEach(link => {
+      link.addEventListener('click', function () {
         if (body.classList.contains('mobile-nav-active')) {
-          toggleBtn.classList.remove('bi-list');
-          toggleBtn.classList.add('bi-x');
-        } else {
+          body.classList.remove('mobile-nav-active');
           toggleBtn.classList.remove('bi-x');
           toggleBtn.classList.add('bi-list');
         }
-      }
-      
-      toggleBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        toggleMobileMenu();
       });
-      
-      document.querySelectorAll('.navmenu a').forEach(link => {
-        link.addEventListener('click', function() {
-          if (body.classList.contains('mobile-nav-active')) {
-            body.classList.remove('mobile-nav-active');
-            toggleBtn.classList.remove('bi-x');
-            toggleBtn.classList.add('bi-list');
-          }
-        });
-      });
-      
-      document.addEventListener('click', function(e) {
-        if (body.classList.contains('mobile-nav-active')) {
-          if (!navmenu.contains(e.target) && !toggleBtn.contains(e.target)) {
-            body.classList.remove('mobile-nav-active');
-            toggleBtn.classList.remove('bi-x');
-            toggleBtn.classList.add('bi-list');
-          }
-        }
-      });
-    })();
-
-    // التوهج المحيط
-    (function() {
-      const glowBall = document.getElementById('glowBall');
-      if (!glowBall) return;
-      let mouseX = 0, mouseY = 0, ballX = 0, ballY = 0;
-      function updateGlowPosition(e) {
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        mouseX = clientX; mouseY = clientY;
-      }
-      function animateGlow() {
-        ballX += (mouseX - ballX) * 0.15;
-        ballY += (mouseY - ballY) * 0.15;
-        glowBall.style.transform = `translate(${ballX}px, ${ballY}px) translate(-50%, -50%)`;
-        requestAnimationFrame(animateGlow);
-      }
-      window.addEventListener('mousemove', updateGlowPosition);
-      window.addEventListener('touchmove', updateGlowPosition, { passive: false });
-      animateGlow();
-    })();
-
-    // زر العودة للأعلى وإخفاء البريلودر
-    window.addEventListener('load', function() {
-      const preloader = document.getElementById('preloader');
-      if (preloader) preloader.style.display = 'none';
     });
-    
-    const scrollTop = document.getElementById('scroll-top');
-    if (scrollTop) {
-      scrollTop.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-      window.addEventListener('scroll', function() {
-        scrollTop.style.display = window.scrollY > 200 ? 'flex' : 'none';
+
+    document.addEventListener('click', function (e) {
+      if (
+        body.classList.contains('mobile-nav-active') &&
+        !navmenu.contains(e.target) &&
+        !toggleBtn.contains(e.target)
+      ) {
+        body.classList.remove('mobile-nav-active');
+        toggleBtn.classList.remove('bi-x');
+        toggleBtn.classList.add('bi-list');
+      }
+    });
+  }
+
+  /* ==============================
+     Glow Effect
+  ============================== */
+  const glowBall = document.getElementById('glowBall');
+
+  let mouseX = 0, mouseY = 0, ballX = 0, ballY = 0;
+
+  if (glowBall) {
+    function updateGlowPosition(e) {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      mouseX = clientX;
+      mouseY = clientY;
+    }
+
+    function animateGlow() {
+      ballX += (mouseX - ballX) * 0.15;
+      ballY += (mouseY - ballY) * 0.15;
+
+      glowBall.style.transform =
+        `translate(${ballX}px, ${ballY}px) translate(-50%, -50%)`;
+
+      requestAnimationFrame(animateGlow);
+    }
+
+    window.addEventListener('mousemove', updateGlowPosition);
+    window.addEventListener('touchmove', updateGlowPosition, { passive: true });
+
+    animateGlow();
+  }
+
+  /* ==============================
+     Galaxy Canvas
+  ============================== */
+  const canvas = document.getElementById('galaxyCanvas');
+
+  if (canvas && glowBall) {
+    const ctx = canvas.getContext('2d');
+
+    const SIZE = glowBall.offsetWidth;
+
+    canvas.width = SIZE;
+    canvas.height = SIZE;
+
+    const centerX = SIZE / 2;
+    const centerY = SIZE / 2;
+
+    const stars = [];
+
+    const colors = [
+      "#ffffff",
+      "#dbe9ff",
+      "#9fd4ff",
+      "#fff4c7",
+      "#ffe6aa"
+    ];
+
+    for (let i = 0; i < 250; i++) {
+      stars.push({
+        angle: Math.random() * Math.PI * 2,
+        distance: Math.random() * 420,
+        size: Math.random() * 2.5 + 0.4,
+        speed: 0.0002 + Math.random() * 0.0008,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        twinkle: Math.random() * 1000
       });
     }
 
-    // fade-up animation
-    const fadeEls = document.querySelectorAll('.fade-up');
+    let nebulaOffset = 0;
+
+    function drawNebula() {
+      nebulaOffset += 0.002;
+
+      const gradient = ctx.createRadialGradient(
+        centerX, centerY, 20,
+        centerX, centerY, 500
+      );
+
+      gradient.addColorStop(
+        0,
+        `rgba(0,242,254,${0.15 + Math.sin(nebulaOffset) * 0.05})`
+      );
+
+      gradient.addColorStop(
+        0.4,
+        `rgba(127,0,255,${0.12 + Math.cos(nebulaOffset) * 0.05})`
+      );
+
+      gradient.addColorStop(1, "rgba(0,0,0,0)");
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 500, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function animateGalaxy() {
+      ctx.clearRect(0, 0, SIZE, SIZE);
+
+      drawNebula();
+
+      stars.forEach(star => {
+        star.angle += star.speed;
+
+        const spiral = star.distance * 0.015;
+
+        const x = centerX + Math.cos(star.angle + spiral) * star.distance;
+        const y = centerY + Math.sin(star.angle + spiral) * star.distance;
+
+        const alpha =
+          0.4 +
+          Math.sin(performance.now() * 0.003 + star.twinkle) * 0.6;
+
+        ctx.beginPath();
+        ctx.fillStyle = star.color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = star.color;
+        ctx.globalAlpha = alpha;
+
+        ctx.arc(x, y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      ctx.globalAlpha = 1;
+
+      requestAnimationFrame(animateGalaxy);
+    }
+
+    animateGalaxy();
+  }
+
+  /* ==============================
+     Preloader
+  ============================== */
+  window.addEventListener('load', function () {
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.style.display = 'none';
+  });
+
+  /* ==============================
+     Scroll Top Button
+  ============================== */
+  const scrollTop = document.getElementById('scroll-top');
+
+  if (scrollTop) {
+    scrollTop.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', function () {
+      scrollTop.style.display = window.scrollY > 200 ? 'flex' : 'none';
+    });
+  }
+
+  /* ==============================
+     Fade Up Animation
+  ============================== */
+  const fadeEls = document.querySelectorAll('.fade-up');
+
+  if (fadeEls.length) {
     const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -640,7 +789,11 @@
         }
       });
     }, { threshold: 0.2 });
+
     fadeEls.forEach(el => fadeObserver.observe(el));
-  </script>
+  }
+
+})();
+</script>
 </body>
 </html>
