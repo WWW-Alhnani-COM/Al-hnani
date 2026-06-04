@@ -1963,3 +1963,23 @@ section .container, header, footer, a, button {
     pointer-events: none !important;
   }
 }
+/* ==============================================
+   جعل أيقونات السوشل في الهيدر بشكل أفقي
+   ============================================== */
+.header-social-links {
+  display: flex !important;
+  flex-direction: row !important;  /* أفقي */
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+}
+
+.header-social-links a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
