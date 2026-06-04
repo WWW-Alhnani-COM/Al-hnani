@@ -566,7 +566,35 @@
   <!-- ✅ التحسين: إزالة جميع السكربتات الثقيلة (GSAP, Bootstrap JS, AOS, Isotope) والتحميل الديناميكي -->
   <script defer src="assets/vendor/php-email-form/validate.js"></script>
   <!-- سيتم تحميل Swiper و GLightbox عند الحاجة -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
+  const toggle = document.getElementById('mobileNavToggle');
+
+  toggle.addEventListener('click', () => {
+
+    document.body.classList.toggle('mobile-nav-active');
+
+    if (document.body.classList.contains('mobile-nav-active')) {
+      toggle.classList.remove('bi-list');
+      toggle.classList.add('bi-x');
+    } else {
+      toggle.classList.remove('bi-x');
+      toggle.classList.add('bi-list');
+    }
+
+  });
+
+  document.querySelectorAll('.navmenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.body.classList.remove('mobile-nav-active');
+      toggle.classList.remove('bi-x');
+      toggle.classList.add('bi-list');
+    });
+  });
+
+});
+</script>
   <script>
     // ========== 1. التوهج المحيط ==========
     (function() {
