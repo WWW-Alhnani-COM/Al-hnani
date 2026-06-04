@@ -1798,15 +1798,14 @@ section,
   }
 
   /* خلفية داكنة عند فتح القائمة */
-  .mobile-nav-active {
+  /* .mobile-nav-active {
     overflow: hidden;
-  }
+  } */
 
   .mobile-nav-active::after {
     content: '';
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
     z-index: 9997;
   }
 
