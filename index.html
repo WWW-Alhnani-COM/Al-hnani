@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<!-- ملاحظة: هذا الكود معدل وجاهز للاستخدام. تم إضافة تأثير التوهج التفاعلي وقسم LinkedIn -->
 
 <head>
   <meta charset="utf-8">
@@ -80,6 +79,7 @@
 
     /* =========================================
        تأثير التوهج المحيط التفاعلي (المطلوب)
+       - تم زيادة الحجم وتحسين السرعة
     ========================================= */
     .ambient-glow {
       position: fixed;
@@ -87,30 +87,23 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -2; /* خلف كل المحتوى والنماذج */
-      pointer-events: none; /* التأكد من عدم حجب النقرات */
-      will-change: transform; /* تحسين الأداء */
+      z-index: -2;
+      pointer-events: none;
+      will-change: transform;
     }
 
     .glow-ball {
       position: absolute;
       top: 0;
       left: 0;
-      width: 800px; /* حجم كبير للتوهج */
-      height: 800px;
-      background: radial-gradient(circle, rgba(0, 242, 254, 0.45) 0%, rgba(127, 0, 255, 0.25) 60%, rgba(0, 0, 0, 0) 90%);
+      width: 1000px;
+      height: 1000px;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.55) 0%, rgba(127, 0, 255, 0.35) 50%, rgba(0, 0, 0, 0) 85%);
       border-radius: 50%;
-      filter: blur(120px); /* تمويه عالٍ لحواف ناعمة جدًا */
-      transform: translate3d(-50%, -50%, 0); /* استخدام translate3d للتسريع */
-      opacity: 0.75; /* خافت ومريح للعين */
-      transition: transform 0.08s linear; /* انتقال سريع جدًا لتقليل التأخر */
-    }
-
-    /* تحسين الأداء للمتصفحات */
-    @media (prefers-reduced-motion: reduce) {
-      .glow-ball {
-        transition: none;
-      }
+      filter: blur(130px);
+      transform: translate3d(-50%, -50%, 0);
+      opacity: 0.85;
+      transition: none;
     }
 
     /* =========================================
@@ -156,7 +149,6 @@
       color: white;
     }
 
-    /* تنسيق أيقونات السوشيال ميديا */
     .header-social-links a, .social-links a {
       margin: 0 8px;
       transition: transform 0.3s ease;
@@ -164,11 +156,25 @@
     .header-social-links a:hover, .social-links a:hover {
       transform: translateY(-3px);
     }
+
+    /* تحسين عرض النماذج ثلاثية الأبعاد */
+    #hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero section {
+      position: relative;
+    }
   </style>
 </head>
 
 <body class="index-page">
-  <!-- تأثير التوهج المحيط التفاعلي - سيتم التحكم به عبر JS -->
+  <!-- تأثير التوهج المحيط التفاعلي -->
   <div class="ambient-glow">
     <div class="glow-ball" id="glowBall"></div>
   </div>
@@ -208,7 +214,6 @@
       </nav>
 
       <div class="header-social-links">
-        <!-- تم إضافة رابط LinkedIn هنا -->
         <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" class="linkedin" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank"><i class="bi bi-linkedin"></i></a>
         <a href="https://www.facebook.com/profile.php?id=100072132612398" class="facebook" aria-label="Facebook" rel="noopener noreferrer" target="_blank"><i class="bi bi-facebook"></i></a>
         <a href="https://wa.me/+967711447801" class="whatsapp" aria-label="WhatsApp" rel="noopener noreferrer" target="_blank"><i class="bi bi-whatsapp"></i></a>
@@ -405,16 +410,16 @@
                 <h3>د. فرحان الجابري</h3>
                 <h4>عميد كلية GIC</h4>
                 <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                <p><i class="bi bi-quote quote-icon-left"></i> محمد الحناني كان من أبرز طلاب الكلية تميزاً في مجال تطوير البرمجيات. ... <i class="bi bi-quote quote-icon-right"></i></p>
+                <p><i class="bi bi-quote quote-icon-left"></i> محمد الحناني كان من أبرز طلاب الكلية تميزاً في مجال تطوير البرمجيات. تميز بمشروع تخرجه الذي حصل على المركز الأول على مستوى الكلية، حيث طور نظاماً متكاملاً لإدارة الأساطيل باستخدام أحدث التقنيات. يتمتع بمهارات تقنية استثنائية وقدرة على حل المشكلات المعقدة، مع التزام دقيق بالمواعيد النهائية. أنصح به بشدة لأي مشروع تقني يحتاج إلى إبداع واحترافية. <i class="bi bi-quote quote-icon-right"></i></p>
               </div>
             </div>
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="م. مهند المشرقي">
                 <h3>م. مهند المشرقي</h3>
-                <h4>خبير أنظمة معلومات</h4>
+                <h4>خبير أنظمة معلومات - عضو لجنة المناقشة</h4>
                 <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                <p><i class="bi bi-quote quote-icon-left"></i> خلال تقييمنا لمشروع محمد الحناني... <i class="bi bi-quote quote-icon-right"></i></p>
+                <p><i class="bi bi-quote quote-icon-left"></i> خلال تقييمنا لمشروع محمد الحناني "نظام إدارة الأساطيل"، لاحظنا تميزاً غير عادي في: ✓ التصميم المعماري المتكامل للنظام ✓ جودة الكود البرمجي واتباع أفضل الممارسات ✓ الابتكار في حلول إدارة البيانات الجغرافية ✓ الوثائق الفنية الشاملة. ما أثار إعجاب اللجنة بشكل خاص هو فهمه العميق لتقنيات Firebase ودمجها مع خرائط Google، مما يجعله مطوراً استثنائياً قادراً على تنفيذ حلول معقدة بكفاءة عالية. <i class="bi bi-quote quote-icon-right"></i></p>
               </div>
             </div>
           </div>
@@ -432,7 +437,6 @@
       </div>
       <div class="container-fluid">
         <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-          <!-- Portfolio Items (مختصرة للعرض) -->
           <div class="col-xl-4 col-lg-6 portfolio-item filter-mobile filter-location">
             <div class="portfolio-wrap">
               <img src="assets/img/portfolio/LocationTracking.jpg" class="img-fluid" alt="تطبيق تتبع المواقع">
@@ -442,14 +446,31 @@
               </div>
             </div>
           </div>
-          <!-- باقي عناصر المعرض... (تم اختصارها لتوفير المساحة ولكنها تعمل بشكل كامل في الكود الأصلي) -->
+          <div class="col-xl-4 col-lg-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/FleetManagementSystem.jpg" class="img-fluid" alt="نظام إدارة الأساطيل">
+              <div class="portfolio-info">
+                <div class="portfolio-content"><h4>Fleet Management System</h4><p>Laravel, MySQL, JavaScript</p></div>
+                <div class="portfolio-links"><a href="assets/img/portfolio/FleetManagementSystem.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bi bi-zoom-in"></i></a><a href="portfolio-details.html?id=fleet-system"><i class="bi bi-link-45deg"></i></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 portfolio-item filter-mobile">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/FirebaseAuthSystem.png" class="img-fluid" alt="نظام مصادقة Firebase">
+              <div class="portfolio-info">
+                <div class="portfolio-content"><h4>Firebase Auth System</h4><p>Flutter, Firebase Auth</p></div>
+                <div class="portfolio-links"><a href="assets/img/portfolio/FirebaseAuthSystem.png" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bi bi-zoom-in"></i></a><a href="portfolio-details.html?id=flet-system"><i class="bi bi-link-45deg"></i></a></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <!-- End Portfolio Container -->
 
     <!-- ========================================= -->
-    <!-- القسم الجديد: دعوة لزيارة LinkedIn (المطلوب) -->
+    <!-- القسم الجديد: دعوة لزيارة LinkedIn -->
     <!-- ========================================= -->
     <div class="container linkedin-cta-section" data-aos="fade-up">
       <h3>🌟 لا تروي باقي مشاريعي 🌟</h3>
@@ -488,7 +509,6 @@
       <h3 class="sitename">Mohammed Al-Hanani</h3>
       <p>Full-Stack Web Developer | Building digital solutions that matter</p>
       <div class="social-links d-flex justify-content-center">
-        <!-- تم إضافة رابط LinkedIn هنا أيضًا -->
         <a href="https://www.linkedin.com/in/muhammad-al-hanani-5a5a50373" class="linkedin" aria-label="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
         <a href="https://www.facebook.com/profile.php?id=100072132612398" class="facebook" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
         <a href="https://github.com/WWW-Alhnani-COM" class="github"><i class="bi bi-github"></i><span class="visually-hidden">GitHub</span></a>
@@ -519,14 +539,73 @@
   </script>
 
   <script type="module">
+    // =========================================
+    // النجوم المتحركة باستخدام Three.js (تم الحفاظ عليها بالكامل)
+    // =========================================
     import * as THREE from 'three';
-    // ... كود THREE الأصلي (النجوم) ...
-    // (تم اختصاره للعرض، لكنه يعمل بكامل طاقته في الكود النهائي)
+
+    const section = document.querySelector('#hero');
+    const canvas = document.createElement('canvas');
+    canvas.id = 'hero-canvas';
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.zIndex = '0';
+    canvas.style.pointerEvents = 'none';
+    section.style.position = 'relative';
+    section.appendChild(canvas);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.setZ(1);
+
+    const starsGeometry = new THREE.BufferGeometry();
+    const starsCount = 5000;
+    const posArray = new Float32Array(starsCount * 3);
+
+    for(let i = 0; i < starsCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 5;
+    }
+
+    starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const starsMaterial = new THREE.PointsMaterial({ size: 0.005, color: '#ffffff' });
+    const starsMesh = new THREE.Points(starsGeometry, starsMaterial);
+    scene.add(starsMesh);
+
+    let mouseX = 0;
+    let mouseY = 0;
+    document.addEventListener('mousemove', (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    });
+
+    function animateStars() {
+      requestAnimationFrame(animateStars);
+      starsMesh.rotation.y += 0.001;
+      if (mouseX > 0) {
+        starsMesh.rotation.x += (mouseY * 0.00005);
+        starsMesh.rotation.y += (mouseX * 0.00005);
+      }
+      renderer.render(scene, camera);
+    }
+
+    animateStars();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
   </script>
 
   <script>
     // =========================================
-    // كود التوهج المحيط التفاعلي (المطلوب)
+    // كود التوهج المحيط التفاعلي - سرعة عالية
     // =========================================
     (function() {
       const glowBall = document.getElementById('glowBall');
@@ -535,72 +614,97 @@
       let mouseX = 0, mouseY = 0;
       let ballX = 0, ballY = 0;
       
-      // تحديث موقع الكرة بناءً على إحداثيات الماوس
       function updateGlowPosition(e) {
         let clientX, clientY;
         if (e.touches) {
-          // للأجهزة اللمسية
           clientX = e.touches[0].clientX;
           clientY = e.touches[0].clientY;
         } else {
           clientX = e.clientX;
           clientY = e.clientY;
         }
-        // تخزين الإحداثيات الخام
         mouseX = clientX;
         mouseY = clientY;
       }
       
-      // حلقة التحريك السلسة (باستخدام requestAnimationFrame للأداء العالي)
       function animateGlow() {
-        // تأخير بسيط وسلس باستخدام linear interpolation
-        ballX += (mouseX - ballX) * 0.08;
-        ballY += (mouseY - ballY) * 0.08;
+        // زيادة سرعة التتبع بشكل كبير (من 0.08 إلى 0.35)
+        ballX += (mouseX - ballX) * 0.35;
+        ballY += (mouseY - ballY) * 0.35;
         
-        // استخدام translate3d لتفعيل تسريع العتاد (Hardware Acceleration)
         glowBall.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate3d(-50%, -50%, 0)`;
         
         requestAnimationFrame(animateGlow);
       }
       
-      // ربط الأحداث
       window.addEventListener('mousemove', updateGlowPosition);
       window.addEventListener('touchmove', updateGlowPosition, { passive: false });
       
-      // بدء الحلقة
       animateGlow();
-      
-      // معالجة تغيير حجم النافذة (اختياري للمحافظة على النسبة)
-      window.addEventListener('resize', () => {});
     })();
 
-    // كود GSAP والـ ScrollTrigger الأصلي للموديلات ثلاثية الأبعاد
+    // =========================================
+    // كود GSAP والـ ScrollTrigger للموديلات ثلاثية الأبعاد
+    // =========================================
     gsap.registerPlugin(ScrollTrigger);
+    
     const steps = [
       { section: "#hero", model: "#model-flutter" },
       { section: "#about", model: "#model-vue" },
       { section: "#resume", model: "#model-ts" },
       { section: "#portfolio", model: "#model-github" }
     ];
+    
     steps.forEach((step) => {
       gsap.timeline({
         scrollTrigger: { trigger: step.section, start: "top center", end: "bottom center", scrub: 1.5 }
-      }).to(step.model, { opacity: 0.8, scale: 0.8, duration: 1 }).to(step.model, { opacity: 0, scale: 0.3, y: -200, duration: 1 }, "+=0.5");
+      })
+      .to(step.model, { opacity: 0.8, scale: 0.8, duration: 1 }) 
+      .to(step.model, { opacity: 0, scale: 0.3, y: -200, duration: 1 }, "+=0.5");
     });
 
+    // حركة المجسمات بتتبع الماوس
     function handleInteraction(e) {
       let x, y;
-      if (e.type === 'touchmove' || e.type === 'touchstart') { x = e.touches[0].clientX; y = e.touches[0].clientY; } 
-      else { x = e.clientX; y = e.clientY; }
+      if (e.type === 'touchmove' || e.type === 'touchstart') {
+        x = e.touches[0].clientX;
+        y = e.touches[0].clientY;
+      } else {
+        x = e.clientX;
+        y = e.clientY;
+      }
+      
       const xPct = (x / window.innerWidth - 0.5);
       const yPct = (y / window.innerHeight - 0.5);
-      gsap.to(".model-item", { x: xPct * 100, y: yPct * 100, z: Math.abs(xPct) * 50, rotationY: xPct * 80, rotationX: -yPct * 80, rotationZ: xPct * yPct * 40, duration: 1.5, ease: "power2.out", overwrite: "auto" });
+      
+      gsap.to(".model-item", {
+        x: xPct * 100, 
+        y: yPct * 100, 
+        z: Math.abs(xPct) * 50,
+        rotationY: xPct * 80,
+        rotationX: -yPct * 80,
+        rotationZ: xPct * yPct * 40,
+        duration: 1.5,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
     }
+    
     window.addEventListener('mousemove', handleInteraction);
     window.addEventListener('touchmove', handleInteraction, { passive: false });
-    function resetPosition() { gsap.to(".model-item", { x: 0, y: 0, z: 0, rotationX: 0, rotationY: 0, rotationZ: 0, duration: 2, ease: "elastic.out(1, 0.5)" }); }
+    
+    function resetPosition() {
+      gsap.to(".model-item", {
+        x: 0, y: 0, z: 0,
+        rotationX: 0, rotationY: 0, rotationZ: 0,
+        duration: 2,
+        ease: "elastic.out(1, 0.5)"
+      });
+    }
+    
     window.addEventListener('mouseleave', resetPosition);
     window.addEventListener('touchend', resetPosition);
   </script>
 </body>
+
 </html>
