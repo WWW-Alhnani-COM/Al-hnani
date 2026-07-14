@@ -1,31 +1,32 @@
-gsap.registerPlugin(ScrollTrigger);
+document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
 
-const video = document.getElementById("my-scroll-video");
+    const video = document.getElementById("my-scroll-video");
 
-if (video) {
-    // التأكد من أن الفيديو جاهز قبل تطبيق التأثير
-    video.addEventListener("loadedmetadata", () => {
-        
-        // إيقاف التشغيل التلقائي الافتراضي
+    // وظيفة لتحريك الفيديو بناءً على السكرول
+    function setupVideoScroll() {
+        // التأكد من أن الفيديو جاهز
         video.pause();
         video.currentTime = 0;
 
-        // ربط الفيديو بالسكرول
         gsap.to(video, {
-            // نستخدم currentTime الموجود في الفيديو مباشرة بدلاً من رقم ثابت
-            currentTime: video.duration, 
+            currentTime: video.duration,
             ease: "none",
             scrollTrigger: {
                 trigger: "#video-section",
                 start: "top top",
-                end: "+=" + (video.duration * 100), // طول القسم يعتمد على مدة الفيديو (سلاسة أكبر)
-                scrub: 0.5, // تقليل القيمة لزيادة سرعة الاستجابة للسكرول
-                pin: true,  // تثبيت الفيديو في مكانه أثناء التمرير
-                invalidateOnRefresh: true // لضمان دقة الحسابات عند تغيير حجم الشاشة
+                end: "bottom bottom", // سينتهي الفيديو عند وصول نهاية القسم لأسفل الشاشة
+                scrub: 0.5,           // يضيف نعومة (Smoothness) لحركة الكاميرا
+                pin: true,            // تثبيت الفيديو في الشاشة
+                pinSpacing: true
             }
         });
-    });
+    }
 
-    // حل مشكلة المتصفحات التي لا تشغل الفيديو في الـ "Metadata" تلقائياً
-    video.load();
-}
+    // الانتظار حتى يتم تحميل بيانات الفيديو (Duration)
+    if (video.readyState >= 1) {
+        setupVideoScroll();
+    } else {
+        video.addEventListener("loadedmetadata", setupVideoScroll);
+    }
+});
