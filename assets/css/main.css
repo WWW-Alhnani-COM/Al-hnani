@@ -1992,3 +1992,10 @@ section .container, header, footer, a, button {
   margin: 0 !important;
   padding: 0 !important;
 }
+#my-scroll-video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover; /* يضمن تغطية الشاشة بالكامل بدون فراغات */
+    display: block;
+}
+
