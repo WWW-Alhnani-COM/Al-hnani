@@ -1,32 +1,37 @@
-document.addEventListener("DOMContentLoaded", () => {
+(function () {
+  "use strict";
+
+  // 1. انتظر تحميل الـ DOM
+  document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
 
+    // 2. التحكم في الفيديو (الخلفية)
     const video = document.getElementById("my-scroll-video");
-
-    // وظيفة لتحريك الفيديو بناءً على السكرول
-    function setupVideoScroll() {
-        // التأكد من أن الفيديو جاهز
+    if (video) {
         video.pause();
         video.currentTime = 0;
-
-        gsap.to(video, {
-            currentTime: video.duration,
-            ease: "none",
-            scrollTrigger: {
-                trigger: "#video-section",
-                start: "top top",
-                end: "bottom bottom", // سينتهي الفيديو عند وصول نهاية القسم لأسفل الشاشة
-                scrub: 0.5,           // يضيف نعومة (Smoothness) لحركة الكاميرا
-                pin: true,            // تثبيت الفيديو في الشاشة
-                pinSpacing: true
-            }
-        });
+        
+        function setupVideo() {
+            gsap.to(video, {
+                currentTime: video.duration,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 0.5,
+                    pin: false // الفيديو مثبت بـ CSS
+                }
+            });
+        }
+        video.readyState >= 1 ? setupVideo() : video.addEventListener("loadedmetadata", setupVideo);
     }
 
-    // الانتظار حتى يتم تحميل بيانات الفيديو (Duration)
-    if (video.readyState >= 1) {
-        setupVideoScroll();
-    } else {
-        video.addEventListener("loadedmetadata", setupVideoScroll);
-    }
-});
+    // 3. كود الـ Galaxy (الذي أرسلته أنت)
+    // ضع منطق الـ Galaxy هنا...
+    
+    // 4. كود الـ FadeUp (الذي أرسلته أنت)
+    // ضع منطق الـ FadeUp هنا...
+  });
+
+})();
