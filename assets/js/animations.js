@@ -1,48 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
-    gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
-    // 1. تأثير البارالاكس للـ Hero Section
-    gsap.to(".hero .container", {
-        scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            scrub: true,
-        },
-        y: 200,
-        opacity: 0,
-        duration: 1
-    });
+const video = document.getElementById("my-scroll-video");
 
-    // 2. تأثير الـ 3D عند التمرير (Portfolio Cards)
-    gsap.utils.toArray(".portfolio-item").forEach((card) => {
-        gsap.fromTo(card, 
-            { opacity: 0, y: 100, scale: 0.8 }, 
-            { 
-                opacity: 1, 
-                y: 0, 
-                scale: 1, 
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 85%",
-                    end: "top 50%",
-                    scrub: 1, // هذا هو السر: الحركة مرتبطة بلمسة الماوس
-                    toggleActions: "play none none reverse"
-                }
-            }
-        );
-    });
+if (video) {
+    // التأكد من أن الفيديو جاهز قبل تطبيق التأثير
+    video.addEventListener("loadedmetadata", () => {
+        
+        // إيقاف التشغيل التلقائي الافتراضي
+        video.pause();
+        video.currentTime = 0;
 
-    // 3. تأثير "تلاشي" للنصوص أثناء التمرير
-    gsap.utils.toArray(".section-title").forEach((title) => {
-        gsap.from(title, {
+        // ربط الفيديو بالسكرول
+        gsap.to(video, {
+            // نستخدم currentTime الموجود في الفيديو مباشرة بدلاً من رقم ثابت
+            currentTime: video.duration, 
+            ease: "none",
             scrollTrigger: {
-                trigger: title,
-                start: "top 90%",
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1
+                trigger: "#video-section",
+                start: "top top",
+                end: "+=" + (video.duration * 100), // طول القسم يعتمد على مدة الفيديو (سلاسة أكبر)
+                scrub: 0.5, // تقليل القيمة لزيادة سرعة الاستجابة للسكرول
+                pin: true,  // تثبيت الفيديو في مكانه أثناء التمرير
+                invalidateOnRefresh: true // لضمان دقة الحسابات عند تغيير حجم الشاشة
+            }
         });
     });
-});
 
+    // حل مشكلة المتصفحات التي لا تشغل الفيديو في الـ "Metadata" تلقائياً
+    video.load();
+}
