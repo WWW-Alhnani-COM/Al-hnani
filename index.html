@@ -34,7 +34,7 @@
 
   <meta name="google-site-verification" content="rf_J7WkCo6wwXKz0jnWzxWg3jJtW5H58N2x6X2YgiYE" />
 
-  <style>
+ <style>
     /* =========================================
        الأنماط الأساسية والمحسّنة
     ========================================= */
@@ -45,53 +45,108 @@
       contain-intrinsic-size: 500px;
     }
 
-    /* تأثير التوهج */
-    .ambient-glow {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      pointer-events: none;
-      will-change: transform;
+    /* ==============================================
+       ✅ الفيديو في الخلفية - الإصلاح
+    ============================================== */
+    
+    /* 1️⃣ حاوية الفيديو */
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 0;
+        overflow: hidden;
+        background: #0a0a14;
     }
-.glow-ball{
-    position:absolute;
-    top:0;
-    left:0;
-    width:1000px;
-    height:1000px;
-    border-radius:50%;
-    overflow:hidden;
-}
-    .glow-ball::before{
-    content:'';
-    position:absolute;
-    inset:0;
-    border-radius:50%;
+    
+    /* 2️⃣ الفيديو نفسه */
+    #my-scroll-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+    
+    /* 3️⃣ التوهج - فوق الفيديو */
+    .ambient-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        will-change: transform;
+    }
+    
+    .glow-ball {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1000px;
+        height: 1000px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    
+    .glow-ball::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle,
+            rgba(0,242,254,.35) 0%,
+            rgba(127,0,255,.25) 35%,
+            rgba(255,0,255,.15) 60%,
+            transparent 85%
+        );
+        filter: blur(60px);
+    }
+    
+    #galaxyCanvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        pointer-events: none;
+    }
 
-    background:
-      radial-gradient(
-        circle,
-        rgba(0,242,254,.35) 0%,
-        rgba(127,0,255,.25) 35%,
-        rgba(255,0,255,.15) 60%,
-        transparent 85%
-      );
+    /* 4️⃣ المحتوى - فوق الجميع */
+    header,
+    main,
+    footer {
+        position: relative;
+        z-index: 2;
+    }
 
-    filter:blur(60px);
-}
- #galaxyCanvas{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    border-radius:50%;
-    pointer-events:none;
-}
+    /* 5️⃣ إزالة الخلفيات */
+    body,
+    html {
+        background: transparent !important;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .main,
+    section,
+    .hero,
+    .about,
+    .section,
+    #hero,
+    #about,
+    #resume,
+    #services,
+    #portfolio,
+    #contact {
+        background: transparent !important;
+    }
 
-    /* ✅ استبدال AOS بأنيميشن CSS خفيف */
+    /* ✅ تحريك النص */
     .fade-up {
       opacity: 0;
       transform: translateY(30px);
@@ -102,9 +157,7 @@
       transform: translateY(0);
     }
 
-    /* =========================================
-       قسم LinkedIn (محتفظ به)
-    ========================================= */
+    /* باقي الأنماط - كما هي */
     .linkedin-cta-fullscreen {
       min-height: 100vh;
       display: flex;
@@ -117,6 +170,7 @@
       backdrop-filter: blur(10px);
       overflow: hidden;
     }
+    
     .linkedin-cta-fullscreen::before {
       content: '';
       position: absolute;
@@ -128,10 +182,12 @@
       animation: rotateBackground 20s linear infinite;
       z-index: 0;
     }
+    
     @keyframes rotateBackground {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+    
     .linkedin-cta-content {
       text-align: center;
       max-width: 800px;
@@ -146,20 +202,24 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 242, 254, 0.2);
       animation: fadeInUp 0.8s ease-out;
     }
+    
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(50px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
     .linkedin-cta-icon {
       font-size: 5rem;
       color: #0077b5;
       margin-bottom: 20px;
       animation: pulse 2s ease-in-out infinite;
     }
+    
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.1); opacity: 0.8; }
     }
+    
     .linkedin-cta-content h3 {
       color: #fff;
       font-size: 2.5rem;
@@ -167,12 +227,14 @@
       font-weight: bold;
       text-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
     }
+    
     .linkedin-cta-content p {
       color: #ddd;
       font-size: 1.2rem;
       margin-bottom: 35px;
       line-height: 1.8;
     }
+    
     .btn-linkedin {
       background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
       color: white;
@@ -188,6 +250,7 @@
       box-shadow: 0 5px 20px rgba(0, 119, 181, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
+    
     .btn-linkedin:hover {
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 15px 30px rgba(0, 119, 181, 0.6);
@@ -205,14 +268,12 @@
       .btn-linkedin { padding: 12px 30px; font-size: 0.95rem; }
       .linkedin-cta-icon { font-size: 3.5rem; }
     }
+    
     .logo {
       margin-right: 0 !important;
       margin-left: 0 !important;
     }
     
-    /* ==============================================
-       تثبيت لون زر الهامبرجر وجعله واضحاً دائماً
-       ============================================== */
     .mobile-nav-toggle {
       color: #00f2fe !important;
       background: rgba(0, 242, 254, 0.2) !important;
@@ -227,14 +288,10 @@
       transform: scale(1.05);
     }
 
-    /* عند فتح القائمة */
     .mobile-nav-active .mobile-nav-toggle {
       background: rgba(0, 242, 254, 0.3) !important;
     }
-    
-    /* ==============================================
-       إخفاء أيقونات الهيدر في الموبايل وإظهار أيقونات القائمة
-       ============================================== */
+
     @media (max-width: 991px) {
       .header .header-social-links,
       .header-social-links {
@@ -270,33 +327,78 @@
         transform: translateY(-3px);
       }
     }
-    /* حاوية الفيديو */
 
-/* الحاوية التي تحمل الفيديو */
-.video-background {
-    position: fixed; /* تثبيت الفيديو في الشاشة دائماً */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: -1; /* وضعه خلف كل عناصر الموقع */
-    overflow: hidden;
-}
+    /* تنسيق نموذج الاتصال */
+    .php-email-form .form-control {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .php-email-form .form-control:focus {
+      border-color: #00f2fe;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    .php-email-form .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .php-email-form button[type="submit"] {
+      background: linear-gradient(135deg, #00f2fe, #7f00ff);
+      color: #fff;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .php-email-form button[type="submit"]:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+    }
 
-/* الفيديو نفسه */
-#my-scroll-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* لضمان تغطية المساحة بدون تشويه */
-    object-position: center;
-}
+    .info-item {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 30px 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      color: #fff;
+    }
+    
+    .info-item:hover {
+      transform: translateY(-5px);
+      border-color: #00f2fe;
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
+    }
+    
+    .info-item i {
+      font-size: 2.5rem;
+      color: #00f2fe;
+      margin-bottom: 15px;
+    }
+    
+    .info-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    
+    .info-item p {
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+    }
+          </style>
 
-/* تأكد أن الأقسام شفافة لتظهر الخلفية من ورائها */
-section, .hero, .about, .main {
-    background: transparent !important;
-}
-
-  </style>
 </head>
 
 <body class="index-page">
