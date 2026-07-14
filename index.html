@@ -270,6 +270,30 @@
         transform: translateY(-3px);
       }
     }
+    /* حاوية الفيديو */
+.video-background {
+    position: fixed; /* ثابت في الشاشة */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* يجعله خلف كل شيء */
+    overflow: hidden;
+}
+
+#my-scroll-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* يملأ الشاشة بالكامل */
+}
+
+/* اجعل أقسام الموقع شفافة لتظهر الخلفية من ورائها */
+section {
+    background: transparent !important;
+    position: relative;
+    z-index: 1;
+}
+
   </style>
 </head>
 
@@ -324,6 +348,16 @@
   </header>
 
   <main class="main">
+    <div class="video-background">
+  <video 
+    id="my-scroll-video" 
+    muted 
+    playsinline 
+    preload="auto"
+    poster="assets/img/video-poster.png">
+    <source src="assets/img/hero-video.mp4" type="video/mp4">
+  </video>
+    </div>
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
       <!-- <img src="assets/img/MuhammadAlhnani.webp" alt="Mohammed Al-Hanani - مطور ويب وتطبيقات جوال محترف" width="1200" height="800" fetchpriority="high"> -->
@@ -334,19 +368,6 @@
       </div>
     </section>
     <!-- قسم الفيديو -->
-<section id="video-section" style="height: 400vh; position: relative;">
-  <div id="video-container" style="position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden;">
-    <video 
-      id="my-scroll-video" 
-      muted 
-      playsinline 
-      preload="auto"
-      poster="assets/img/video-poster.png" 
-      style="width: 100%; height: 100%; object-fit: cover;">
-      <source src="assets/img/hero-video.mp4" type="video/mp4">
-    </video>
-  </div>
-</section>
 
 
 
