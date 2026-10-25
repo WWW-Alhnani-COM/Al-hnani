@@ -1,0 +1,94 @@
+.electric-border {
+  --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  position: relative;
+  border-radius: inherit;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.eb-canvas-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.eb-canvas {
+  display: block;
+}
+
+.eb-content {
+  position: relative;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.eb-layers {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.eb-glow-1,
+.eb-glow-2,
+.eb-background-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.eb-glow-1 {
+  border: 2px solid oklch(from var(--electric-border-color) l c h / 0.6);
+  filter: blur(1px);
+}
+
+.eb-glow-2 {
+  border: 2px solid var(--electric-light-color);
+  filter: blur(4px);
+}
+
+.eb-background-glow {
+  z-index: -1;
+  transform: scale(1.1);
+  filter: blur(32px);
+  opacity: 0.3;
+  background: linear-gradient(-30deg, var(--electric-light-color), transparent, var(--electric-border-color));
+}
+
+/* ===== تحسينات إضافية لتتناسب مع تصميم الموقع ===== */
+
+/* إضافة ظل ناعم للبطاقات */
+.electric-border .eb-content {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* تأثير إضافي عند التمرير */
+.electric-border:hover .eb-glow-1 {
+  border-color: oklch(from var(--electric-border-color) l c h / 0.9);
+  transition: border-color 0.3s ease;
+}
+
+.electric-border:hover .eb-glow-2 {
+  filter: blur(6px);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.electric-border:hover .eb-background-glow {
+  opacity: 0.5;
+  transform: scale(1.15);
+  transition: all 0.5s ease;
+}
+
+/* تحسين للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .eb-canvas-container {
+    display: none; /* إخفاء التأثير على الجوال لتوفير الأداء */
+  }
+}

@@ -1,0 +1,349 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+html {
+  background: #050505;
+  color: #f5f5f5;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #050505;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+canvas {
+  display: block;
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* طبقة زجاجية أخف للأقسام أسفل الهيرو */
+/* .glass-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.glass-section::before {
+  content: "";
+  position: absolute;
+  inset: -12px 0;
+  z-index: 0;
+  pointer-events: none;
+  border: 1px solid rgb(255 255 255 / 4%);
+  border-radius: 24px;
+  background: rgb(255 255 255 / 1.5%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.dark .glass-section::before {
+  background: rgb(0 0 0 / 2%);
+  border-color: rgb(255 255 255 / 3%);
+}
+
+.glass-section > * {
+  position: relative;
+  z-index: 1;
+}
+ */
+
+
+/* ===== Contact section: premium glass redesign ===== */
+#contact {
+  position: relative;
+  isolation: isolate;
+  scroll-margin-top: 7rem;
+}
+
+#contact > div {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.25rem, 4vw, 3.25rem);
+  border: 1px solid rgb(245 158 11 / 20%);
+  border-radius: 30px;
+  background:
+    radial-gradient(ellipse at 8% 5%, rgb(245 158 11 / 12%), transparent 36%),
+    radial-gradient(ellipse at 96% 90%, rgb(245 158 11 / 7%), transparent 34%),
+    linear-gradient(145deg, rgb(255 255 255 / 4%), rgb(0 0 0 / 20%));
+  box-shadow: 0 28px 90px rgb(0 0 0 / 18%), inset 0 1px 0 rgb(255 255 255 / 5%);
+}
+
+#contact > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(251 191 36 / 85%), transparent);
+  pointer-events: none;
+}
+
+#contact > div > .grid {
+  position: relative;
+  align-items: stretch;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+#contact h2 {
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+#contact > div > p {
+  max-width: 42rem;
+  margin-inline: auto;
+  line-height: 1.9;
+}
+
+#contact > div > .grid > div:first-child {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgb(245 158 11 / 18%);
+  border-radius: 24px;
+  background: linear-gradient(155deg, rgb(245 158 11 / 9%), rgb(255 255 255 / 2%) 55%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%);
+}
+
+#contact > div > .grid > div:first-child > div {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+}
+
+#contact > div > .grid > div:first-child > div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+#contact > div > .grid > div:first-child span {
+  color: rgb(251 191 36 / 85%);
+  letter-spacing: .12em;
+}
+
+#contact > div > .grid > div:first-child a {
+  display: inline-block;
+  margin-top: .25rem;
+  line-height: 1.8;
+  transition: color .2s ease, transform .2s ease;
+}
+
+#contact > div > .grid > div:first-child a:hover {
+  transform: translateX(-2px);
+}
+
+#contact form {
+  padding: clamp(1.1rem, 3vw, 2rem);
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 24px;
+  background: rgb(7 7 7 / 45%);
+  box-shadow: 0 18px 45px rgb(0 0 0 / 18%), inset 0 1px 0 rgb(255 255 255 / 4%);
+}
+
+#contact form label {
+  color: rgb(255 255 255 / 65%);
+  font-weight: 500;
+  letter-spacing: .015em;
+}
+
+#contact form input,
+#contact form textarea {
+  min-height: 48px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 13px;
+  background: rgb(255 255 255 / 4%);
+  color: #fff;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+#contact form textarea {
+  min-height: 132px;
+}
+
+#contact form input:focus,
+#contact form textarea:focus {
+  border-color: rgb(251 191 36 / 75%);
+  background: rgb(255 255 255 / 6%);
+  box-shadow: 0 0 0 3px rgb(245 158 11 / 10%);
+}
+
+#contact form button[type="submit"] {
+  min-height: 50px;
+  border-radius: 13px;
+  background: linear-gradient(100deg, #fbbf24, #f59e0b);
+  box-shadow: 0 10px 28px rgb(245 158 11 / 18%);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+#contact form button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 14px 32px rgb(245 158 11 / 25%);
+}
+
+@media (max-width: 640px) {
+  #contact > div {
+    border-radius: 22px;
+  }
+
+  #contact > div > .grid > div:first-child,
+  #contact form {
+    border-radius: 18px;
+  }
+
+  #contact form input,
+  #contact form textarea {
+    font-size: 16px;
+  }
+}
+
+/* ===== Hero scroll typography ===== */
+.hero-arabic-font {
+  font-family: var(--font-arabic), Tahoma, Arial, sans-serif;
+  text-wrap: balance;
+}
+
+.hero-display-font {
+  font-family: var(--font-display), var(--font-geist-sans), Arial, sans-serif;
+  text-wrap: balance;
+}
+
