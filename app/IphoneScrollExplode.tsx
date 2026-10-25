@@ -1601,7 +1601,7 @@ useEffect(() => {
               
               {/* GitHub */}
               <a 
-                href="https://github.com/MohammedAlHanani" 
+                href="https://github.com/WWW-Alhnani-COM" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#181717] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg shadow-[#181717]/30"
@@ -1613,7 +1613,7 @@ useEffect(() => {
               
               {/* Facebook */}
               <a 
-                href="https://facebook.com" 
+                href="https://www.facebook.com/profile.php?id=100072132612398" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg shadow-[#1877F2]/30"
